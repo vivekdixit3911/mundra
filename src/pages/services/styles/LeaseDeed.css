@@ -1,0 +1,198 @@
+/* ========== INDEX PAGE COLOR SCHEME ========== */
+:root {
+    --primary-color: #1C2951;
+    --primary-gold: #D4AF37;
+    --light-gold: #F4E9C1;
+    --mundra-dark: #1C2951;
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --bg-light: #fefefe;
+    --bg-soft: #f7fafc;
+    --shadow-sm: 0 2px 8px rgba(28, 41, 81, 0.08);
+    --shadow-md: 0 8px 24px rgba(28, 41, 81, 0.12);
+    --shadow-lg: 0 16px 48px rgba(28, 41, 81, 0.16);
+}
+
+.lease-section h1, .lease-section h2, .lease-section h3, .lease-section h4, .lease-section h5, .lease-section h6 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+}
+
+/* ========== LAYOUT ========== */
+.lease-section {
+    padding: 60px 24px;
+    background: linear-gradient(180deg, #f8f9fb 0%, #ffffff 50%, #f8f9fb 100%);
+}
+.lease-container {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* ========== MAIN CONTENT ========== */
+.lease-main {
+    background: white;
+    padding: 48px 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(28, 41, 81, 0.08);
+}
+
+.lease-main h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.lease-byline {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.lease-byline::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(180deg, var(--primary-color), var(--primary-gold));
+    border-radius: 2px;
+}
+
+.lease-main p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+}
+
+.lease-main h2 {
+    color: var(--primary-color);
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 12px;
+}
+.lease-main h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-gold));
+    border-radius: 2px;
+}
+
+.lease-main h3 {
+    color: var(--text-primary);
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    margin-top: 32px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.lease-main h3::before {
+    content: '●';
+    color: var(--primary-gold);
+    font-size: 0.7em;
+}
+
+/* ========== HIGHLIGHT ELEMENTS ========== */
+.callout {
+    background: linear-gradient(135deg, rgba(28, 41, 81, 0.05) 0%, rgba(212, 175, 55, 0.08) 100%);
+    border-left: 5px solid var(--primary-color);
+    padding: 20px 24px;
+    border-radius: 12px;
+    margin: 24px 0;
+    box-shadow: var(--shadow-sm);
+}
+.callout p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.highlight-box {
+    background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 24px 0;
+    position: relative;
+    box-shadow: var(--shadow-md);
+}
+.highlight-box::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-gold));
+    border-radius: 18px;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+/* ========== LOTTIE ANIMATIONS ========== */
+.section-lottie {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    margin: 40px auto;
+}
+
+/* ========== SIDEBAR ========== */
+.lease-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+.contact-card {
+    background: white;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(28, 41, 81, 0.08);
+    margin-bottom: 24px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1100px) {
+    .lease-main {
+        padding: 36px 28px;
+    }
+    .lease-section {
+        padding: 40px 20px;
+    }
+}
+@media (max-width: 900px) {
+    .lease-container {
+        grid-template-columns: 1fr;
+    }
+    .lease-sidebar {
+        position: static;
+    }
+}
+@media (max-width: 640px) {
+    .lease-main {
+        padding: 24px 20px;
+        border-radius: 12px;
+    }
+    .lease-main h1 {
+        font-size: 1.8rem;
+    }
+}
