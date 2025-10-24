@@ -571,6 +571,11 @@ const SocietyAndTrust = () => {
           <SocietySidebar>
             <SidebarScrollWrapper>
               <SidebarForm />
+              <div style={{marginTop: 18, textAlign: 'center'}}>
+                <h4 style={{marginBottom: 8}}>Download Checklist</h4>
+                <p style={{color: '#718096', marginBottom: 12}}>Get a printable checklist for society/trust/section-8 registration.</p>
+                <a href="/assets/checklists/society-trust-checklist.txt" download="society-trust-checklist.txt" style={{display: 'inline-block', padding: '10px 16px', background: '#1C2951', color: 'white', borderRadius: 8, textDecoration: 'none'}}>Download Checklist</a>
+              </div>
             </SidebarScrollWrapper>
           </SocietySidebar>
         </SocietyContainer>
