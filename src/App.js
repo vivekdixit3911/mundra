@@ -55,6 +55,7 @@ import Notarization from "./pages/services/Notarization";
 import LoanProjectReports from "./pages/services/LoanProjectReports";
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 import PiriyaAssistant from './components/PiriyaAssistant';
+import ShiftingRegisteredOffice from "./pages/services/ShiftingRegisteredOffice";
 
 // Main App Container
 const AppContainer = styled.div`
@@ -999,6 +1000,37 @@ function App() {
             </ServiceCard>
 
             <ServiceCard
+              onClick={() => (window.location.href = "/services/shifting-registered-office")}
+            >
+              <ServiceImage>
+                <img
+                  src="https://images.unsplash.com/photo-1560184897-6c5f1c2b6f3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60"
+                  alt="Registered Office Shift"
+                />
+              </ServiceImage>
+              <ServiceContent>
+                <h3>Registered Office Shift</h3>
+                <p>
+                  We handle the entire process of shifting your company's registered office — intra-city, inter-ROC, or inter-state — including ROC filings and RD approvals.
+                </p>
+                <ul>
+                  <li>
+                    <i className="fas fa-check"></i> INC-22 & MGT-14 Filing
+                  </li>
+                  <li>
+                    <i className="fas fa-check"></i> Drafting Resolutions
+                  </li>
+                  <li>
+                    <i className="fas fa-check"></i> RD Approvals (if required)
+                  </li>
+                </ul>
+                <a href="/services/shifting-registered-office" className="service-btn">
+                  Learn More <i className="fas fa-arrow-right"></i>
+                </a>
+              </ServiceContent>
+            </ServiceCard>
+
+            <ServiceCard
               onClick={() => (window.location.href = "/services/cyber-fraud")}
             >
               <ServiceImage>
@@ -1216,7 +1248,7 @@ function App() {
                   <div className="contact-text">
                     <h4>Office Address</h4>
                     <p>
-                      Best Sky Tower, 1307, plot no F-5 Netaji Subhash Place,
+                      Best Sky Tower, 1307, Plot No F-5 Netaji Subhash Place,
                       Pitampura, Delhi, 110034
                     </p>
                   </div>
@@ -1531,6 +1563,8 @@ function App() {
         {/* Additional service routes */}
         <Route path="/services/notarization" element={<Notarization />} />
         <Route path="/services/loan-project-reports" element={<LoanProjectReports />} />
+        <Route path="/services/shifting-registered-office" element={<ShiftingRegisteredOffice />} />
+        <Route path="/services/shift-registered-office" element={<ShiftingRegisteredOffice />} />
         <Route path="/testimonials" element={<HomePage />} />
       </Routes>
     </Router>

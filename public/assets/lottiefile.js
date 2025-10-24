@@ -2,8 +2,12 @@
 // Usage: include this JS with a <script src="/includes/lottie-animations.js"></script>
 // and add data-lottie attributes to any container div.
 
-// Ensure the dotlottie webcomponent is loaded on the page before this script runs.
-const lottieAnimations = {
+// This script is wrapped in an IIFE and uses window.lottieAnimations as the
+// shared store so it is safe to load multiple times (prevents duplicate
+// top-level `const` declarations that cause runtime errors).
+(function (window, document) {
+  // Ensure the dotlottie webcomponent is loaded on the page before this script runs.
+  window.lottieAnimations = window.lottieAnimations || {
   // Hero / Homepage - Abstract hero animation
   "hero-abstract": {
     src: "https://lottie.host/ef1d7d85-dde0-4c27-a810-839b07a7524a/wI6JcFwH1y.lottie",
@@ -149,15 +153,18 @@ const lottieAnimations = {
     width: "300px",
     height: "300px",
   },
-};
+  };
 
-function loadLottieAnimation(
-  animationName,
-  targetElementId,
-  customWidth = null,
-  customHeight = null,
-) {
-  const animation = lottieAnimations[animationName];
+  // Local alias for this IIFE scope
+  const lottieAnimations = window.lottieAnimations;
+
+  function loadLottieAnimation(
+    animationName,
+    targetElementId,
+    customWidth = null,
+    customHeight = null,
+  ) {
+    const animation = lottieAnimations[animationName];
   if (!animation) {
     console.error(`Lottie animation "${animationName}" not found!`);
     return;
@@ -204,4 +211,5 @@ whenReady(initLottieAnimations);
 
 // Expose for manual use
 window.loadLottieAnimation = loadLottieAnimation;
-window.lottieAnimations = lottieAnimations;
+
+})(window, document);

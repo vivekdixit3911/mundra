@@ -75,100 +75,86 @@ const AboutPageContainer = styled.div`
   overflow-x: hidden;
 `;
 
-// Hero Section
+// Hero Section (simplified and decluttered)
 const AboutHero = styled.section`
-  min-height: 100vh;
+  min-height: 78vh;
   display: flex;
   align-items: center;
   position: relative;
-  background: linear-gradient(135deg, #1c2951 0%, #2b3f6b 50%, #3b5998 100%);
+  background: linear-gradient(180deg, #16213a 0%, #1c2951 60%);
   overflow: hidden;
 `;
 
 const HeroBackground = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 1;
 
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      135deg,
-      rgba(28, 41, 81, 0.9) 0%,
-      rgba(43, 63, 107, 0.8) 50%,
-      rgba(59, 89, 152, 0.7) 100%
-    );
-    z-index: 2;
+    inset: 0;
+    /* subtle overlay for contrast */
+    background: linear-gradient(180deg, rgba(12,18,34,0.55), rgba(28,41,81,0.45));
+    z-index: 1;
+    pointer-events: none;
   }
 `;
 
 const FloatingElements = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
+  inset: 0;
+  z-index: 2;
   pointer-events: none;
 
   .element {
     position: absolute;
-    background: rgba(230, 197, 127, 0.1);
+    background: rgba(212,175,55,0.08);
     border-radius: 50%;
-    animation: ${float} 6s ease-in-out infinite;
+    animation: ${float} 8s ease-in-out infinite;
+    filter: blur(6px);
 
     &.element-1 {
-      width: 80px;
-      height: 80px;
-      top: 20%;
-      left: 10%;
+      width: 56px;
+      height: 56px;
+      top: 18%;
+      left: 6%;
       animation-delay: 0s;
-      animation-duration: 8s;
     }
 
     &.element-2 {
-      width: 60px;
-      height: 60px;
-      top: 60%;
-      right: 15%;
+      width: 48px;
+      height: 48px;
+      top: 62%;
+      right: 12%;
       animation-delay: 2s;
-      animation-duration: 6s;
     }
 
-    &.element-3 {
-      width: 100px;
-      height: 100px;
-      bottom: 20%;
-      left: 20%;
-      animation-delay: 4s;
-      animation-duration: 10s;
-    }
+    /* reduced elements for less clutter */
+  }
+ 
+  @media (max-width: 768px) {
+    display: none; /* hide decorative floats on small screens */
   }
 `;
 
 const HeroContainer = styled.div`
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 420px;
+  gap: 2.5rem;
   align-items: center;
   position: relative;
   z-index: 4;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     text-align: center;
+    align-items: center;
+    justify-items: center;
     padding: 0 1rem;
   }
 `;
@@ -180,62 +166,72 @@ const HeroContent = styled.div`
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(230, 197, 127, 0.2);
+    background: rgba(212,175,55,0.12);
     color: #e6c57f;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(230, 197, 127, 0.3);
-    animation: ${fadeInUp} 1s ease-out 0.1s both;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(212,175,55,0.14);
+    animation: ${fadeInUp} 0.9s ease-out 0.05s both;
 
     i {
-      font-size: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      font-size: 0.8rem;
+      font-size: 0.95rem;
     }
   }
 
+  @media (max-width: 900px) {
+    .hero-badge { justify-content: center; }
+    h1 { text-align: center; }
+    .hero-description { margin-left: auto; margin-right: auto; text-align: center; }
+  }
+
   h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 4.5vw, 3rem);
     font-family: "Playfair Display", serif;
     font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    animation: ${fadeInUp} 1s ease-out 0.2s both;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    animation: ${fadeInUp} 0.9s ease-out 0.15s both;
+
+    color: #ffffff; /* ensure main heading is white */
 
     .highlight-text {
       color: #e6c57f;
-      display: block;
-      font-style: italic;
+      display: inline-block;
+      font-style: normal;
+    }
+
+    .h1-secondary {
+      color: #ffffff; /* trailing text explicitly white */
+      display: inline-block;
+      margin-left: 0.35rem;
+      font-weight: 600;
+      font-size: 0.95em;
     }
   }
 
   .hero-description {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.9);
-    animation: ${fadeInUp} 1s ease-out 0.3s both;
-
-    @media (max-width: 768px) {
-      font-size: 1.1rem;
-    }
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 58ch;
+    animation: ${fadeInUp} 0.9s ease-out 0.25s both;
   }
 `;
 
 const HeroButtons = styled.div`
   display: flex;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  animation: ${fadeInUp} 1s ease-out 0.4s both;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  animation: ${fadeInUp} 0.9s ease-out 0.3s both;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.75rem;
+    align-items: stretch;
   }
 
   .btn-primary,
@@ -243,58 +239,44 @@ const HeroButtons = styled.div`
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 700;
     text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 1rem;
+    transition: all 0.22s ease;
+    font-size: 0.95rem;
+  }
 
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
+    .btn-primary, .btn-secondary {
+      width: 100%;
       justify-content: center;
-      padding: 0.9rem 1.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-radius: 12px;
     }
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #e6c57f 0%, #d4af37 100%);
-    color: #1c2951;
+    background: linear-gradient(90deg, #e6c57f 0%, #d4af37 100%);
+    color: #102035;
     border: none;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(230, 197, 127, 0.4);
-      color: #1c2951;
-      text-decoration: none;
-    }
   }
 
   .btn-secondary {
     background: transparent;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: white;
-      color: white;
-      text-decoration: none;
-    }
+    color: rgba(255,255,255,0.95);
+    border: 1.6px solid rgba(255,255,255,0.12);
   }
 `;
 
 const HeroCredentials = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  animation: ${fadeInUp} 1s ease-out 0.5s both;
+  gap: 0.75rem;
+  animation: ${fadeInUp} 0.9s ease-out 0.4s both;
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  @media (max-width: 480px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
   }
@@ -303,25 +285,17 @@ const HeroCredentials = styled.div`
     text-align: center;
 
     .credential-number {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 900;
       color: #e6c57f;
       font-family: "Inter", sans-serif;
-      animation: ${zoomIn} 1s ease-out 0.6s both;
-
-      @media (max-width: 768px) {
-        font-size: 1.8rem;
-      }
+      animation: ${zoomIn} 0.9s ease-out 0.5s both;
     }
 
     .credential-text {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: 500;
-
-      @media (max-width: 768px) {
-        font-size: 0.8rem;
-      }
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
     }
   }
 `;
@@ -330,56 +304,55 @@ const HeroImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ${fadeInLeft} 1s ease-out 0.6s both;
+  animation: ${fadeInLeft} 0.9s ease-out 0.5s both;
 
-  @media (max-width: 768px) {
-    order: -1;
+  @media (max-width: 900px) {
+    order: 2;
   }
 `;
 
 const HeroCard = styled.div`
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 1.4rem;
   text-align: center;
-  max-width: 350px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 320px;
+  border: 1px solid rgba(255,255,255,0.06);
 
   @media (max-width: 768px) {
-    max-width: 300px;
-    padding: 1.5rem;
+    max-width: 100%;
+    padding: 1rem;
   }
 
   .card-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #e6c57f 0%, #d4af37 100%);
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(90deg, #e6c57f 0%, #d4af37 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
+    margin: 0 auto 0.8rem;
 
     i {
-      font-size: 2rem;
-      color: #1c2951;
+      font-size: 1.6rem;
+      color: #102035;
     }
   }
 
   h3 {
-    font-size: 1.3rem;
-    color: #1c2951;
+    font-size: 1.15rem;
+    color: #fff;
     font-family: "Playfair Display", serif;
     font-weight: 700;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
   }
 
   p {
-    color: #64748b;
-    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
     font-size: 0.95rem;
+    margin: 0;
   }
 `;
 
@@ -1114,9 +1087,8 @@ const About = () => {
             </div>
 
             <h1>
-              About{" "}
-              <span className="highlight-text">Mundra Legal Consultants</span>
-              Your Trusted Legal Partners
+              About <span className="highlight-text">Mundra Legal Consultants</span>
+              <span className="h1-secondary">Your Trusted Legal Partners</span>
             </h1>
 
             <p className="hero-description">

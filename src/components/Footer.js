@@ -426,7 +426,7 @@ const Footer = () => {
               <i className="fas fa-map-marker-alt"></i>
               <div>
                 <p>
-                  Best Sky Tower, 1307, plot no F-5, Netaji Subhash Place,
+                  Best Sky Tower, 1307, Plot No F-5, Netaji Subhash Place,
                   Pitampura, Delhi, 110034
                 </p>
               </div>

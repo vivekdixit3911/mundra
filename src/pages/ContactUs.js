@@ -995,7 +995,7 @@ const ContactUs = () => {
                       >
                         <strong>Mundra Legal Consultants</strong>
                         <br />
-                        Best Sky Tower, 1307, plot no F-5 Netaji Subhash Place,
+                        Best Sky Tower, 1307, Plot No F-5 Netaji Subhash Place,
                         Pitampura, Delhi, 110034
                       </p>
                     </div>
@@ -1279,7 +1279,7 @@ const ContactUs = () => {
                   className="fas fa-map-marker-alt"
                   style={{ color: "#D4AF37", marginRight: "0.5rem" }}
                 ></i>
-                Best Sky Tower, 1307, plot no F-5 Netaji Subhash Place,
+                Best Sky Tower, 1307, Plot No F-5 Netaji Subhash Place,
                 Pitampura, Delhi, 110034
               </p>
               <div
