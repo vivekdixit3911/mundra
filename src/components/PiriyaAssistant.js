@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes, css } from 'styled-components';
 
 const bounce = keyframes`
   0%, 20%, 50%, 80%, 100% {
@@ -26,6 +26,12 @@ const pulse = keyframes`
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
   }
+`;
+
+const clickPing = keyframes`
+  0% { transform: scale(1); box-shadow: 0 4px 20px rgba(212,175,55,0.25); }
+  50% { transform: scale(1.12); box-shadow: 0 14px 40px rgba(212,175,55,0.36); }
+ 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(212,175,55,0.25); }
 `;
 
 const PiriyaButton = styled.button`
@@ -59,6 +65,9 @@ const PiriyaButton = styled.button`
   &:active {
     transform: translateY(-1px) scale(1.02);
   }
+
+  /* play a brief ping animation when user clicks */
+  ${props => props.$pinging && css`animation: ${clickPing} 0.6s ease;`}
 
   i {
     font-size: 24px;
@@ -113,7 +122,8 @@ const OnlineStatus = styled.div`
     transform: translate(-50%, -50%);
     width: 6px;
     height: 6px;
-    background: white;
+    background: #25D366; /* inner dot: green instead of white */
+    box-shadow: 0 0 6px rgba(37, 211, 102, 0.6);
     border-radius: 50%;
 
     @media (max-width: 768px) {
@@ -173,8 +183,8 @@ const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  opacity: ${props => props.isOpen ? 1 : 0};
-  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+  opacity: ${props => props.$isOpen ? 1 : 0};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
   transition: all 0.3s ease;
 `;
 
@@ -187,7 +197,7 @@ const ModalContent = styled.div`
   max-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  transform: ${props => props.isOpen ? 'scale(1)' : 'scale(0.8)'};
+  transform: ${props => props.$isOpen ? 'scale(1)' : 'scale(0.8)'};
   transition: all 0.3s ease;
 
   @media (max-width: 768px) {
@@ -357,13 +367,70 @@ const CloseButton = styled.button`
   }
 `;
 
+const AssistantWrapper = styled.div`
+  position: fixed;
+  right: 20px;
+  bottom: 100px; /* sits above the WhatsApp button (which is at ~20px) */
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media (max-width: 480px) {
+    right: 16px;
+    bottom: 110px;
+  }
+`;
+
 const PiriyaAssistant = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pinging, setPinging] = useState(false);
+  const [assistantStep, setAssistantStep] = useState(0); // 0: greeting, 1: name, 2: email+phone, 3: preference, 4: final
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: ''
   });
+
+  useEffect(() => {
+    // auto-popup once per session after the user scrolls for a short time
+    try {
+      const seen = sessionStorage.getItem('piriyaSeen');
+      if (!seen) {
+        let timer = null;
+        const onScroll = () => {
+          // start timer on first scroll
+          if (timer) return;
+          timer = setTimeout(() => {
+            setIsModalOpen(true);
+            setAssistantStep(0); // greeting
+            sessionStorage.setItem('piriyaSeen', 'true');
+          }, 3000); // open 3s after user scrolls
+          // remove listener — we only want this once
+          window.removeEventListener('scroll', onScroll);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => {
+          window.removeEventListener('scroll', onScroll);
+          if (timer) clearTimeout(timer);
+        };
+      }
+    } catch (e) {
+      // sessionStorage may not be available in some environments
+    }
+  }, []);
+
+  const triggerPing = (nextStep = null) => {
+    setPinging(true);
+    setTimeout(() => setPinging(false), 650);
+    if (nextStep !== null) setTimeout(() => setAssistantStep(nextStep), 350);
+  };
+
+  const openAndStart = () => {
+    // clicking the floating button should ping then ask for name
+    setIsModalOpen(true);
+    triggerPing(1);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -373,41 +440,72 @@ const PiriyaAssistant = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Here you can add logic to send the data to your backend
-    console.log('Piriya Assistant Form Data:', formData);
-    
-    // Show success message
-    alert(`Thank you ${formData.name}! Piriya will contact you soon at ${formData.email} or ${formData.phone}`);
-    
-    // Reset form and close modal
-    setFormData({ name: '', phone: '', email: '' });
-    setIsModalOpen(false);
+  const handleNext = (e) => {
+    if (e) e.preventDefault();
+    if (assistantStep === 0) {
+      // greeting -> ask name
+      triggerPing(1);
+      setIsModalOpen(true);
+      return;
+    }
+
+    if (assistantStep === 1) {
+      if (!formData.name || formData.name.trim().length < 2) {
+        alert('Please enter your name');
+        return;
+      }
+      setAssistantStep(2);
+      return;
+    }
+
+    if (assistantStep === 2) {
+      if (!formData.email || !formData.phone) {
+        alert('Please enter your email and phone number');
+        return;
+      }
+      setAssistantStep(3);
+      return;
+    }
+
+    if (assistantStep === 3) {
+      // send or queue the request here (backend integration point)
+      console.log('Piriya contact request', formData);
+      setAssistantStep(4);
+      setTimeout(() => {
+        // close after brief pause
+        setIsModalOpen(false);
+        setAssistantStep(0);
+        setFormData({ name: '', phone: '', email: '' });
+      }, 3500);
+      return;
+    }
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setAssistantStep(0);
   };
 
   return (
     <>
-      <PiriyaButton 
-        onClick={() => setIsModalOpen(true)}
-        aria-label="Open Piriya AI Assistant"
-      >
-        <i className="fas fa-robot"></i>
-        <OnlineStatus />
-        <Tooltip>Chat with Piriya AI Assistant</Tooltip>
-      </PiriyaButton>
+      <AssistantWrapper>
+        <PiriyaButton 
+          onClick={openAndStart}
+          aria-label="Open Piriya AI Assistant"
+          $pinging={pinging}
+        >
+          <i className="fas fa-robot"></i>
+          <OnlineStatus />
+          <Tooltip>Chat with Piriya AI Assistant</Tooltip>
+        </PiriyaButton>
+      </AssistantWrapper>
 
-      <ModalOverlay isOpen={isModalOpen} onClick={handleCloseModal}>
-        <ModalContent isOpen={isModalOpen} onClick={(e) => e.stopPropagation()}>
+      <ModalOverlay $isOpen={isModalOpen} onClick={handleCloseModal}>
+        <ModalContent $isOpen={isModalOpen} onClick={(e) => e.stopPropagation()}>
           <CloseButton onClick={handleCloseModal}>
             <i className="fas fa-times"></i>
           </CloseButton>
-          
+
           <ModalHeader>
             <PiriyaAvatar>
               <i className="fas fa-robot"></i>
@@ -420,50 +518,82 @@ const PiriyaAssistant = () => {
             </OnlineText>
           </ModalHeader>
 
-          <Form onSubmit={handleSubmit}>
-            <FormGroup>
-              <Label htmlFor="name">Full Name *</Label>
-              <Input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Enter your full name"
-                required
-              />
-            </FormGroup>
+          {/* Multi-step assistant flow */}
+          {assistantStep === 0 && (
+            <div style={{ textAlign: 'center', padding: '0 12px 20px' }}>
+              <p style={{ color: '#475569', fontSize: '1.05rem' }}>Hi — how can I help?</p>
+              <div style={{ marginTop: 18 }}>
+                <SubmitButton onClick={() => handleNext()}>
+                  Start
+                </SubmitButton>
+              </div>
+            </div>
+          )}
 
-            <FormGroup>
-              <Label htmlFor="phone">Phone Number *</Label>
-              <Input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder="Enter your phone number"
-                required
-              />
-            </FormGroup>
+          {assistantStep === 1 && (
+            <Form onSubmit={handleNext}>
+              <FormGroup>
+                <Label htmlFor="name">May I have your name?</Label>
+                <Input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Enter your full name"
+                  required
+                />
+              </FormGroup>
+              <SubmitButton type="submit">Next</SubmitButton>
+            </Form>
+          )}
 
-            <FormGroup>
-              <Label htmlFor="email">Email Address *</Label>
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Enter your email address"
-                required
-              />
-            </FormGroup>
+          {assistantStep === 2 && (
+            <Form onSubmit={handleNext}>
+              <FormGroup>
+                <Label htmlFor="email">Email Address</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="name@example.com"
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="phone">Phone Number</Label>
+                <Input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="+91 98765 43210"
+                  required
+                />
+              </FormGroup>
+              <SubmitButton type="submit">Next</SubmitButton>
+            </Form>
+          )}
 
-            <SubmitButton type="submit">
-              Start Chatting with Piriya
-            </SubmitButton>
-          </Form>
+          {assistantStep === 3 && (
+            <div style={{ padding: '0 12px 20px' }}>
+              <p style={{ color: '#475569', marginBottom: 12 }}>Prefer a call or chat?</p>
+              <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginBottom: 18 }}>
+                <SubmitButton onClick={() => handleNext()}>Call</SubmitButton>
+                <SubmitButton onClick={() => handleNext()}>Chat</SubmitButton>
+              </div>
+              <div style={{ textAlign: 'center', color: '#94a3b8' }}>We'll contact you shortly.</div>
+            </div>
+          )}
+
+          {assistantStep === 4 && (
+            <div style={{ padding: '12px', textAlign: 'center' }}>
+              <p style={{ fontSize: '1.05rem', color: '#475569' }}>Just a moment — we are getting to you in a bit.</p>
+            </div>
+          )}
         </ModalContent>
       </ModalOverlay>
     </>

@@ -14,10 +14,11 @@ const RtoGstChallan = () => {
     document.head.appendChild(dotlottie);
 
     // load lottie animations script (adjust path if needed)
-    const lottieScript = document.createElement('script');
-    lottieScript.src = '/includes/lottie-animations.js';
-    lottieScript.async = true;
-    document.body.appendChild(lottieScript);
+  const lottieScript = document.createElement('script');
+  // Use the bundled lottie helper under /assets to avoid 404 HTML responses
+  lottieScript.src = '/assets/lottiefile.js';
+  lottieScript.async = true;
+  document.body.appendChild(lottieScript);
 
     // smooth anchor scrolling
     const onClick = (e) => {

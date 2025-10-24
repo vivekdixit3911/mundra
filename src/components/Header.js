@@ -236,9 +236,9 @@ const MegaMenu = styled.div`
   border: 1px solid rgba(212, 175, 55, 0.2);
   padding: 2rem;
   margin-top: 1rem;
-  opacity: ${props => props.isOpen ? 1 : 0};
-  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-  transform: ${props => props.isOpen ? 'translateY(0)' : 'translateY(-15px)'};
+  opacity: ${props => props.$isOpen ? 1 : 0};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+  transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-15px)'};
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   min-width: 900px;
@@ -437,9 +437,9 @@ const ExpertDropdown = styled.div`
   padding: 1.5rem;
   margin-top: 0.5rem;
   min-width: 300px;
-  opacity: ${props => props.isOpen ? 1 : 0};
-  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-  transform: ${props => props.isOpen ? 'translateY(0)' : 'translateY(-10px)'};
+  opacity: ${props => props.$isOpen ? 1 : 0};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+  transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-10px)'};
   transition: all 0.3s ease;
   z-index: 1000;
 
@@ -524,8 +524,8 @@ const MobileMenu = styled.div`
   background: rgba(28, 41, 81, 0.95);
   backdrop-filter: blur(10px);
   z-index: 2000;
-  opacity: ${props => props.isOpen ? 1 : 0};
-  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+  opacity: ${props => props.$isOpen ? 1 : 0};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
   transition: all 0.3s ease;
   overflow: hidden;
 
@@ -541,7 +541,7 @@ const MobileMenuContent = styled.div`
   max-width: 100%;
   padding: 1rem;
   overflow-y: auto;
-  transform: ${props => props.isOpen ? 'translateX(0)' : 'translateX(-100%)'};
+  transform: ${props => props.$isOpen ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 0.3s ease;
 
   .mobile-category {
@@ -1002,7 +1002,7 @@ const Header = () => {
                   Services
                   <i className="fas fa-chevron-down"></i>
                 </button>
-                <MegaMenu isOpen={activeDropdown === 'services'}>
+                <MegaMenu $isOpen={activeDropdown === 'services'}>
                   <MegaMenuContent>
                     <MegaMenuLeft>
                       <div className="category-list">
@@ -1094,7 +1094,7 @@ const Header = () => {
                     Talk to Expert
                     <i className="fas fa-chevron-down"></i>
                   </button>
-                  <ExpertDropdown isOpen={activeDropdown === 'expert'}>
+                  <ExpertDropdown $isOpen={activeDropdown === 'expert'}>
                     {expertContacts.map((expert, index) => (
                       <a
                         key={index}
@@ -1122,8 +1122,8 @@ const Header = () => {
         </HeaderMain>
       </HeaderContainer>
 
-      <MobileMenu isOpen={isMobileMenuOpen}>
-        <MobileMenuContent isOpen={isMobileMenuOpen}>
+      <MobileMenu $isOpen={isMobileMenuOpen}>
+        <MobileMenuContent $isOpen={isMobileMenuOpen}>
           <button 
             className="mobile-close"
             onClick={() => setIsMobileMenuOpen(false)}
@@ -1133,10 +1133,10 @@ const Header = () => {
 
           <div className="mobile-logo" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem', padding: '1rem', background: '#f8fafc', borderRadius: '12px' }}>
             <img src="/assets/logo.png" alt="Mundra Legal" style={{ height: '50px', width: 'auto' }} />
-            <div className="logo-text">
+            {/* <div className="logo-text">
               <div className="main-text" style={{ fontSize: '1.2rem', fontWeight: '700', color: '#1C2951', marginBottom: '0.2rem' }}>Mundra Legal</div>
               <div className="sub-text" style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: '500' }}>ODR • TM • Registrations & Compliance</div>
-            </div>
+            </div> */}
           </div>
 
           <div className="mobile-actions">

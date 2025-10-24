@@ -13,10 +13,11 @@ const TradeLicense = () => {
     dotlottie.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js';
     document.head.appendChild(dotlottie);
 
-    const lottieScript = document.createElement('script');
-    lottieScript.src = '/includes/lottie-animations.js';
-    lottieScript.async = true;
-    document.body.appendChild(lottieScript);
+  const lottieScript = document.createElement('script');
+  // Use the bundled lottie helper under /assets to avoid 404 HTML responses
+  lottieScript.src = '/assets/lottiefile.js';
+  lottieScript.async = true;
+  document.body.appendChild(lottieScript);
 
     // quick-links visibility logic
     const updateQuickLinksVisibility = () => {

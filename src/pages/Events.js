@@ -292,6 +292,158 @@ const ContactSection = styled.div`
   }
 `;
 
+// Diwali gallery styled components
+const DiwaliGallery = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+`;
+
+// wrapper to limit visible rows and allow expand/collapse
+const GalleryPreviewWrapper = styled.div`
+  overflow: hidden;
+  transition: max-height 0.45s ease;
+  max-height: ${props => props.$expanded ? 'none' : '540px'}; /* ~2 rows of 260px images + gap */
+`;
+
+const DiwaliCard = styled.div`
+  position: relative;
+  background: linear-gradient(180deg, #fff 0%, #fff 100%);
+  border-radius: 14px;
+  overflow: visible;
+  display: block;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+
+  /* decorative frame using pseudo-element */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(44,74,124,0.06));
+    z-index: -2;
+    filter: blur(6px);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    opacity: 0.95;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(90deg, rgba(212,175,55,0.85), rgba(28,41,81,0.85));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+    opacity: 0.06;
+    transition: opacity 0.35s ease;
+  }
+
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(2,6,23,0.18);
+  }
+`;
+
+const DiwaliImage = styled.img`
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.45s ease;
+
+  ${DiwaliCard}:hover & {
+    transform: scale(1.03);
+  }
+`;
+
+const HappyDiwaliBanner = styled.div`
+  text-align: center;
+  margin-bottom: 18px;
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: #D97706;
+    margin: 0 0 8px 0;
+    animation: glow 2.5s ease-in-out infinite;
+  }
+
+  p {
+    color: #475569;
+    margin: 0 0 12px 0;
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 6px rgba(212,175,55,0.2); transform: translateY(0); }
+    50% { text-shadow: 0 0 18px rgba(212,175,55,0.6); transform: translateY(-4px); }
+    100% { text-shadow: 0 0 6px rgba(212,175,55,0.2); transform: translateY(0); }
+  }
+`;
+
+const OfficeOutingBanner = styled(HappyDiwaliBanner)`
+  h2 { color: #0ea5a4; }
+`;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+`;
+
+const ModalContent = styled.div`
+  max-width: 900px;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(2,6,23,0.4);
+`;
+
+const ModalImage = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+`;
+
+const ShowMoreButton = styled.button`
+  display: inline-block;
+  margin: 18px auto 0;
+  background: linear-gradient(135deg, #1C2951, #D4AF37);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.18s ease;
+
+  &:hover { transform: translateY(-3px); }
+`;
+
 const Events = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -338,26 +490,45 @@ const Events = () => {
     }
   ];
 
-  const pastEvents = [
-    {
-      title: "GST Compliance Workshop",
-      date: "January 20, 2024",
-      description: "Comprehensive workshop on GST registration, filing, and compliance requirements.",
-      attendees: "50+ participants"
-    },
-    {
-      title: "Trademark Registration Seminar",
-      date: "January 15, 2024",
-      description: "Learn about intellectual property protection and trademark registration process.",
-      attendees: "35+ participants"
-    },
-    {
-      title: "Legal Documentation Clinic",
-      date: "January 10, 2024",
-      description: "Free legal documentation assistance for individuals and small businesses.",
-      attendees: "75+ participants"
-    }
+  // Diwali images found in public/assets/events/diwali
+  const diwaliImages = [
+    'WhatsApp Image 2025-10-24 at 10.59.24 AM (1).jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.24 AM (2).jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.24 AM.jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.25 AM (1).jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.25 AM (2).jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.25 AM (3).jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.25 AM.jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.26 AM (1).jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.26 AM (2).jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.26 AM.jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.27 AM (1).jpeg',
+    'WhatsApp Image 2025-10-24 at 10.59.27 AM.jpeg'
   ];
+
+  // Office outing images found in public/assets/events/Office_visit
+  const officeImages = [
+    'WhatsApp Image 2025-10-24 at 11.54.07 AM.jpeg',
+    'WhatsApp Image 2025-10-24 at 11.54.08 AM (1).jpeg',
+    'WhatsApp Image 2025-10-24 at 11.54.08 AM.jpeg',
+    'WhatsApp Image 2025-10-24 at 11.54.09 AM.jpeg'
+  ];
+
+  const [showAllDiwali, setShowAllDiwali] = useState(false);
+  const [showAllOffice, setShowAllOffice] = useState(false);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const openModal = (img) => {
+    setSelectedImage(img);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    setModalOpen(false);
+  };
 
   return (
     <>
@@ -370,6 +541,67 @@ const Events = () => {
               Join our expert-led workshops, seminars, and consultation sessions to stay updated with the latest legal developments and get professional guidance.
             </p>
           </EventsHeader>
+
+          {/* Diwali gallery section: shows event photos from public/assets/events/diwali */}
+          <UpcomingEvents>
+            <HappyDiwaliBanner>
+              <h2>Happy Diwali</h2>
+              <p>Enjoy highlights from our Diwali events and designs.</p>
+            </HappyDiwaliBanner>
+
+            <GalleryPreviewWrapper $expanded={showAllDiwali}>
+              <DiwaliGallery>
+                {diwaliImages && diwaliImages.length > 0 ? (
+                  diwaliImages.map((img, idx) => (
+                    <DiwaliCard key={idx} onClick={() => openModal(img)} style={{ cursor: 'pointer' }}>
+                      <DiwaliImage src={`/assets/events/diwali/${img}`} alt={`Diwali ${idx + 1}`} />
+                    </DiwaliCard>
+                  ))
+                ) : (
+                  <p style={{ color: '#475569' }}>No Diwali images found. Please add images to <code>/public/assets/events/diwali</code>.</p>
+                )}
+              </DiwaliGallery>
+            </GalleryPreviewWrapper>
+
+            {diwaliImages && diwaliImages.length > 6 && (
+              <div style={{ textAlign: 'center' }}>
+                <ShowMoreButton onClick={() => setShowAllDiwali(prev => !prev)}>
+                  {showAllDiwali ? 'Show less' : 'Show more'}
+                </ShowMoreButton>
+              </div>
+            )}
+          </UpcomingEvents>
+
+          {/* Upcoming Events (kept below the Diwali gallery) */}
+          {/* Office outing gallery */}
+          <UpcomingEvents>
+            <OfficeOutingBanner>
+              <h2>Office Outing</h2>
+              <p>Memories from our recent office visit and team outing.</p>
+            </OfficeOutingBanner>
+
+            <GalleryPreviewWrapper $expanded={showAllOffice}>
+              <DiwaliGallery as={DiwaliGallery}>
+                {officeImages && officeImages.length > 0 ? (
+                  officeImages.map((img, idx) => (
+                    <DiwaliCard key={idx} onClick={() => openModal(img)} style={{ cursor: 'pointer' }}>
+                      <DiwaliImage src={`/assets/events/Office_visit/${img}`} alt={`Office ${idx + 1}`} />
+                    </DiwaliCard>
+                  ))
+                ) : (
+                  <p style={{ color: '#475569' }}>No office outing images found. Please add images to <code>/public/assets/events/Office_visit</code>.</p>
+                )}
+              </DiwaliGallery>
+            </GalleryPreviewWrapper>
+
+            {officeImages && officeImages.length > 6 && (
+              <div style={{ textAlign: 'center' }}>
+                <ShowMoreButton onClick={() => setShowAllOffice(prev => !prev)}>
+                  {showAllOffice ? 'Show less' : 'Show more'}
+                </ShowMoreButton>
+              </div>
+            )}
+          </UpcomingEvents>
 
           <UpcomingEvents>
             <h2>Upcoming Events</h2>
@@ -396,40 +628,17 @@ const Events = () => {
             </EventList>
           </UpcomingEvents>
 
-          <EventsGrid>
-            {pastEvents.map((event, index) => (
-              <EventCard key={index}>
-                <EventDate>
-                  <i className="fas fa-calendar-check"></i>
-                  {event.date}
-                </EventDate>
-                <EventTitle>{event.title}</EventTitle>
-                <EventDescription>{event.description}</EventDescription>
-                <EventDetails>
-                  <div>
-                    <i className="fas fa-users"></i>
-                    {event.attendees}
-                  </div>
-                </EventDetails>
-                <EventButton href="/contact">
-                  <i className="fas fa-info-circle"></i>
-                  Learn More
-                </EventButton>
-              </EventCard>
-            ))}
-          </EventsGrid>
-
-          <ContactSection>
-            <h2>Want to Organize an Event?</h2>
-            <p>
-              We regularly organize legal workshops, seminars, and consultation sessions. 
-              Contact us to know about upcoming events or to request a custom event for your organization.
-            </p>
-            <a href="tel:+918506874280">
-              <i className="fas fa-phone"></i>
-              Contact Us: +91 85068 74280
-            </a>
-          </ContactSection>
+          {/* Modal for full-size image */}
+          {modalOpen && (
+            <ModalOverlay onClick={closeModal}>
+              <ModalContent onClick={(e) => e.stopPropagation()}>
+                <div style={{ position: 'relative' }}>
+                  <CloseButton onClick={closeModal}>Close</CloseButton>
+                  <ModalImage src={`/assets/events/diwali/${selectedImage}`} alt="Selected Diwali" />
+                </div>
+              </ModalContent>
+            </ModalOverlay>
+          )}
         </EventsContainer>
       </EventsSection>
 

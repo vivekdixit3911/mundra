@@ -13,9 +13,11 @@ const PublicLimitedCompany = () => {
     dotlottieScript.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js';
     document.head.appendChild(dotlottieScript);
 
-    // Attempt to load lottie-animations script from public/includes (adjust path if needed)
-    const lottieScript = document.createElement('script');
-    lottieScript.src = '/includes/lottie-animations.js';
+  // Attempt to load lottie helper script (use existing file under /assets)
+  const lottieScript = document.createElement('script');
+  // previous path '/includes/lottie-animations.js' returned HTML (404) in some setups
+  // point to the bundled asset that ships with the project to avoid syntax errors
+  lottieScript.src = '/assets/lottiefile.js';
     lottieScript.async = true;
     document.body.appendChild(lottieScript);
 

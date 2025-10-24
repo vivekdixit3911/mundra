@@ -25,10 +25,11 @@ const TrafficChallan = () => {
     document.head.appendChild(dotlottie);
 
     // optional lottie-animations (local public includes)
-    const lottieScript = document.createElement('script');
-    lottieScript.src = '/includes/lottie-animations.js';
-    lottieScript.async = true;
-    document.body.appendChild(lottieScript);
+  const lottieScript = document.createElement('script');
+  // Use the bundled lottie helper under /assets to avoid 404 HTML responses
+  lottieScript.src = '/assets/lottiefile.js';
+  lottieScript.async = true;
+  document.body.appendChild(lottieScript);
 
     // quick-links visibility
     const updateQuickLinks = () => {

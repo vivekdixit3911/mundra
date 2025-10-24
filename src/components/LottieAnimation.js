@@ -12,6 +12,7 @@ const AnimationContainer = styled.div`
 
 const LottieAnimation = ({ src, width, height, autoplay = true, loop = true }) => {
   const containerRef = useRef(null);
+  const animRef = useRef(null);
 
   useEffect(() => {
     if (!containerRef.current || !src) return;
@@ -45,23 +46,31 @@ const LottieAnimation = ({ src, width, height, autoplay = true, loop = true }) =
     const loadAnimation = async () => {
       try {
         await loadLottieScript();
-        
+
         if (window.lottie && containerRef.current) {
+          // Ensure previous animation is destroyed and container cleared to avoid duplicate SVGs
+          if (animRef.current) {
+            try { animRef.current.destroy(); } catch (e) { /* ignore */ }
+            animRef.current = null;
+          }
+          containerRef.current.innerHTML = '';
+
           // Fetch the JSON file
           const response = await fetch(src);
           if (!response.ok) {
             throw new Error(`Failed to fetch animation: ${response.status}`);
           }
           const animationData = await response.json();
-          
+
           const anim = window.lottie.loadAnimation({
             container: containerRef.current,
-            renderer: "svg",
+            renderer: 'svg',
             loop: loop,
             autoplay: autoplay,
             animationData: animationData,
           });
 
+          animRef.current = anim;
           return anim;
         }
       } catch (error) {
@@ -73,15 +82,14 @@ const LottieAnimation = ({ src, width, height, autoplay = true, loop = true }) =
       }
     };
 
-    let anim = null;
-    loadAnimation().then((animation) => {
-      anim = animation;
-    });
+    loadAnimation();
 
     return () => {
-      if (anim) {
-        anim.destroy();
+      if (animRef.current) {
+        try { animRef.current.destroy(); } catch (e) { /* ignore */ }
+        animRef.current = null;
       }
+      if (containerRef.current) containerRef.current.innerHTML = '';
     };
   }, [src, autoplay, loop]);
 
