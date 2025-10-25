@@ -519,9 +519,11 @@ const Events = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedFolder, setSelectedFolder] = useState('diwali');
 
-  const openModal = (img) => {
+  const openModal = (img, folder = 'diwali') => {
     setSelectedImage(img);
+    setSelectedFolder(folder);
     setModalOpen(true);
   };
 
@@ -551,9 +553,9 @@ const Events = () => {
 
             <GalleryPreviewWrapper $expanded={showAllDiwali}>
               <DiwaliGallery>
-                {diwaliImages && diwaliImages.length > 0 ? (
+                  {diwaliImages && diwaliImages.length > 0 ? (
                   diwaliImages.map((img, idx) => (
-                    <DiwaliCard key={idx} onClick={() => openModal(img)} style={{ cursor: 'pointer' }}>
+                    <DiwaliCard key={idx} onClick={() => openModal(img, 'diwali')} style={{ cursor: 'pointer' }}>
                       <DiwaliImage src={`/assets/events/diwali/${img}`} alt={`Diwali ${idx + 1}`} />
                     </DiwaliCard>
                   ))
@@ -584,7 +586,7 @@ const Events = () => {
               <DiwaliGallery as={DiwaliGallery}>
                 {officeImages && officeImages.length > 0 ? (
                   officeImages.map((img, idx) => (
-                    <DiwaliCard key={idx} onClick={() => openModal(img)} style={{ cursor: 'pointer' }}>
+                    <DiwaliCard key={idx} onClick={() => openModal(img, 'Office_visit')} style={{ cursor: 'pointer' }}>
                       <DiwaliImage src={`/assets/events/Office_visit/${img}`} alt={`Office ${idx + 1}`} />
                     </DiwaliCard>
                   ))
@@ -631,10 +633,10 @@ const Events = () => {
           {/* Modal for full-size image */}
           {modalOpen && (
             <ModalOverlay onClick={closeModal}>
-              <ModalContent onClick={(e) => e.stopPropagation()}>
+                  <ModalContent onClick={(e) => e.stopPropagation()}>
                 <div style={{ position: 'relative' }}>
                   <CloseButton onClick={closeModal}>Close</CloseButton>
-                  <ModalImage src={`/assets/events/diwali/${selectedImage}`} alt="Selected Diwali" />
+                  <ModalImage src={`/assets/events/${selectedFolder}/${selectedImage}`} alt={`Selected ${selectedFolder}`} />
                 </div>
               </ModalContent>
             </ModalOverlay>
