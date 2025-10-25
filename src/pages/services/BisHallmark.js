@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ServiceHero from '../../components/ServiceHero';
 import { PageContent } from './ServicePage.styles.js';
+import SidebarForm from '../../components/SidebarForm';
 
 export const BailMattersContainer = styled.div`
   --primary-gold: #d4af37;
