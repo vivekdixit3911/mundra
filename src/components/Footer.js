@@ -472,8 +472,8 @@ const Footer = () => {
         <FooterBottom>
           <p>© 2025 Mundra Legal Consultants. All rights reserved.</p>
           <div className="footer-links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
+            <Link to="/privacy">Privacy</Link>
+            <Link to="/terms">Terms</Link>
             <a href="/sitemap">Sitemap</a>
           </div>
         </FooterBottom>

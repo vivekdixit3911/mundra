@@ -11,6 +11,8 @@ import Footer from "./components/Footer";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import Events from "./pages/Events";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 import LeaseDeed from "./pages/services/LeaseDeed";
 import StampPaperNotary from "./pages/services/StampPaperNotary";
 import PropertyRegistry from "./pages/services/PropertyRegistry";
@@ -1456,6 +1458,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
+  <Route path="/terms" element={<Terms />} />
+  <Route path="/privacy" element={<Privacy />} />
         <Route path="/events" element={<Events />} />
         <Route path="/services" element={<HomePage />} />
         <Route path="/contact" element={<ContactUs />} />
