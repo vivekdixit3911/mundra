@@ -38,6 +38,12 @@ export const PLCMain = styled.article`
     background-clip: text;
     color: transparent;
   }
+  @media (max-width: 900px) {
+    padding: 32px;
+  }
+  @media (max-width: 480px) {
+    padding: 20px;
+  }
 `;
 
 export const PLCByline = styled.p`
@@ -51,8 +57,12 @@ export const PLCByline = styled.p`
 export const SectionLottie = styled.div`
   width: 100%;
   max-width: 420px;
-  height: 320px;
+  height: auto;
   margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > * { width: 100%; height: auto; max-height: 360px; }
 `;
 
 export const FeatureGrid = styled.div`
@@ -121,12 +131,20 @@ export const ProcessTimeline = styled.div`
     background: linear-gradient(to bottom, #1C2951, #D4AF37);
     border-radius: 2px;
   }
+  @media (max-width: 900px) {
+    padding-left: 16px;
+    &::before { left: 8px; }
+  }
 `;
 
 export const TimelineItem = styled.div`
   position: relative;
   margin-bottom: 26px;
   padding-left: 36px;
+  @media (max-width: 900px) {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const TimelineMarker = styled.div`
@@ -141,6 +159,11 @@ export const TimelineMarker = styled.div`
   align-items: center;
   justify-content: center;
   color: #fff;
+  @media (max-width: 900px) {
+    left: 0;
+    transform: translateX(-50%);
+    top: 4px;
+  }
 `;
 
 export const PLCSidebar = styled.aside`
@@ -150,6 +173,10 @@ export const PLCSidebar = styled.aside`
 export const SidebarScrollWrapper = styled.div`
   max-height: calc(100vh - 40px);
   overflow-y: auto;
+  @media (max-width: 900px) {
+    max-height: none;
+    overflow: visible;
+  }
 `;
 
 export const StatsGrid = styled.div`
@@ -211,6 +238,14 @@ export const QuickLinksBar = styled.nav`
     text-decoration: none;
     padding: 8px 12px;
     border-radius: 6px;
+  @media (max-width: 768px) {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    thead { display: none; }
+    tr { display: table-row; }
+    td { display: table-cell; padding: 10px; }
+  }
     background: rgba(255, 255, 255, 0.03);
     font-weight: 600;
     white-space: nowrap;
