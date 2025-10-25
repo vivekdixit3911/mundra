@@ -128,6 +128,100 @@ export const PageContent = styled.section`
     }
   }
 
+  /* WPC / VNO specific styles */
+  .quick-links {
+    position: fixed;
+    left: 50%;
+    top: 90px;
+    transform: translateX(-50%);
+    z-index: 950;
+    transition: all 0.25s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .quick-links.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .quick-links .ql-container {
+    display: flex;
+    gap: 10px;
+    background: rgba(255,255,255,0.98);
+    padding: 8px 12px;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(28,41,81,0.08);
+    border: 1px solid rgba(28,41,81,0.06);
+    align-items: center;
+  }
+
+  .quick-links .ql-container a {
+    color: var(--primary-color, #1C2951);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.18s ease;
+  }
+
+  .quick-links .ql-container a:hover {
+    background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.06));
+    color: var(--primary-color, #1C2951);
+  }
+
+  .wpc-byline {
+    color: #64748b;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .callout {
+    background: linear-gradient(90deg, rgba(212,175,55,0.06), rgba(28,41,81,0.02));
+    border-left: 4px solid var(--primary-gold, #D4AF37);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    color: #1c2951;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 18px 0;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(28,41,81,0.06);
+  }
+
+  .stat-number {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary-gold, #D4AF37);
+  }
+
+  .inline-lottie, .section-lottie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px 0;
+  }
+
+  @media (max-width: 900px) {
+    .quick-links { top: 80px; }
+    .quick-links .ql-container a { padding: 6px 10px; font-size: 0.9rem; }
+  }
+
   .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

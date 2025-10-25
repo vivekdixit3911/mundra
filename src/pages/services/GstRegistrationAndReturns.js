@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import LottieAnimation from "../../components/LottieAnimation";
+import SidebarForm from "../../components/SidebarForm";
 import { GstReturnsContainer } from "./GstReturns.styles.js";
 
 const GstRegistrationAndReturns = () => {
@@ -328,6 +329,70 @@ const GstRegistrationAndReturns = () => {
                     47, and interest charges under Section 50 of GST Act.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Detailed content + sidebar form */}
+            <div className="container" style={{ marginTop: 40 }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 360px",
+                  gap: "2.5rem",
+                }}
+              >
+                <div style={{ background: "white", padding: "2.5rem", borderRadius: 16, boxShadow: "0 10px 30px rgba(0,0,0,0.06)" }}>
+                  <h3 style={{ color: "var(--primary-color)" }}>Comprehensive GST Services</h3>
+                  <p style={{ color: "#64748b", lineHeight: 1.8 }}>
+                    We provide end-to-end GST services including registration, monthly and annual return filing,
+                    reconciliation, GST audits, notices & assessments, refund claims, and advisory for complex
+                    transactions (exports, imports, reverse charge, OIDAR, e-commerce operations).
+                  </p>
+
+                  <h4 style={{ marginTop: 20 }}>What we handle for you</h4>
+                  <ul style={{ color: "#374151", lineHeight: 1.8 }}>
+                    <li>GST Registration & Amendments (new businesses, additional places of business)</li>
+                    <li>GSTR-1 / GSTR-3B / GSTR-9 reconciliation and filing</li>
+                    <li>Input Tax Credit reconciliation and advisory</li>
+                    <li>GST Refunds and Export Documentation</li>
+                    <li>Representation for GST Notices, Assessments & Audit support</li>
+                    <li>GST for e-commerce, marketplace, and supply chain structures</li>
+                  </ul>
+
+                  <h4 style={{ marginTop: 20 }}>Useful Notes</h4>
+                  <p style={{ color: "#64748b" }}>
+                    Timely and accurate filing is essential to avoid interest and penalties. We help you maintain
+                    accurate books, vendor-supplier reconciliation, and automate return preparation where possible.
+                  </p>
+
+                  <h4 style={{ marginTop: 20 }}>GST Enquiry Form</h4>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const fd = new FormData(e.target);
+                      const name = fd.get('name');
+                      const phone = fd.get('phone');
+                      const email = fd.get('email');
+                      const enquiry = fd.get('enquiry');
+                      const whatsappNumber = '918506874280';
+                      const whatsappMessage = `*GST Enquiry*\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nEnquiry: ${enquiry}`;
+                      const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                      window.open(waUrl, '_blank');
+                    }}
+                  >
+                    <div style={{ display: 'grid', gap: 12 }}>
+                      <input name="name" placeholder="Your name*" required style={{ padding: '12px', borderRadius: 8, border: '1px solid #e2e8f0' }} />
+                      <input name="phone" placeholder="Phone*" required style={{ padding: '12px', borderRadius: 8, border: '1px solid #e2e8f0' }} />
+                      <input name="email" placeholder="Email*" type="email" required style={{ padding: '12px', borderRadius: 8, border: '1px solid #e2e8f0' }} />
+                      <textarea name="enquiry" placeholder="Brief about your GST requirement" rows={4} style={{ padding: '12px', borderRadius: 8, border: '1px solid #e2e8f0' }} />
+                      <button type="submit" style={{ background: 'linear-gradient(135deg,#D4AF37,#e6c57f)', border: 'none', padding: '12px', borderRadius: 10, fontWeight: 700, cursor: 'pointer' }}>Send Enquiry via WhatsApp</button>
+                    </div>
+                  </form>
+                </div>
+
+                <aside style={{ position: 'sticky', top: 120, alignSelf: 'start' }}>
+                  <SidebarForm />
+                </aside>
               </div>
             </div>
           </section>

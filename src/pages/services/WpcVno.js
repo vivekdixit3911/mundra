@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ServiceHero from '../../components/ServiceHero';
+import LottieAnimation from '../../components/LottieAnimation';
+import SidebarForm from '../../components/SidebarForm';
 import { PageContent } from './ServicePage.styles.js';
 
 const WpcVno = () => {
@@ -10,35 +12,7 @@ const WpcVno = () => {
   const backToTopRef = useRef(null);
 
   useEffect(() => {
-    // Load dotlottie web component
-    if (!document.querySelector('script[data-dotlottie]')) {
-      const s = document.createElement('script');
-      s.type = 'module';
-      s.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js';
-      s.setAttribute('data-dotlottie', '1');
-      document.head.appendChild(s);
-    }
-
-    // Load sidebar form HTML and its script
-    (async () => {
-      try {
-        const resp = await fetch('../includes/sidebar-form.html');
-        if (resp.ok) {
-          const html = await resp.text();
-          const placeholder = document.getElementById('sidebar-form-placeholder');
-          if (placeholder) placeholder.innerHTML = html;
-          const s = document.createElement('script');
-          s.src = '../includes/sidebar-form.js';
-          s.async = true;
-          document.body.appendChild(s);
-          // Trigger resize in case sidebar script depends on it
-          window.dispatchEvent(new Event('resize'));
-        }
-      } catch (e) {
-        // silent catch
-        // console.warn('Sidebar form load failed', e);
-      }
-    })();
+    // No external sidebar includes loaded dynamically anymore.
 
     // Quick links visibility, smooth scrolling, back-to-top, and sidebar sticky behavior
     const quickLinksBar = document.getElementById('quickLinksBar');
@@ -169,7 +143,7 @@ const WpcVno = () => {
             <div className="wpc-container">
               <article className="wpc-main">
                 <div className="inline-lottie">
-                  <dotlottie-wc src="../assets/lottiefiles/Business.lottie" autoplay loop></dotlottie-wc>
+                  <LottieAnimation src="/assets/Drafts/Business.json" width="180px" height="180px" />
                 </div>
 
                 <h1 id="wpc-heading">WPC & VNO Services</h1>
@@ -205,7 +179,7 @@ const WpcVno = () => {
                 <p>A <strong>Writ Petition Civil (WPC)</strong> is a powerful constitutional remedy available under <strong>Articles 32 and 226 of the Indian Constitution</strong>. It allows citizens to approach the Supreme Court or High Courts when their fundamental rights are violated or when government authorities act beyond their legal powers.</p>
 
                 <div className="section-lottie">
-                  <dotlottie-wc src="../assets/lottiefiles/Business team.lottie" autoplay loop></dotlottie-wc>
+                  <LottieAnimation src="/assets/Drafts/Business team.json" width="220px" height="220px" />
                 </div>
 
                 <div className="callout">
@@ -215,7 +189,7 @@ const WpcVno = () => {
 
               <aside className="wpc-sidebar">
                 <div className="sidebar-scroll-wrapper" id="sidebarForm" ref={sidebarRef}>
-                  <div id="sidebar-form-placeholder"></div>
+                  <SidebarForm />
                 </div>
               </aside>
             </div>
