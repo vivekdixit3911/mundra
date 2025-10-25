@@ -542,5 +542,3 @@ export const PageContent = styled.section`
     }
   }
 `;
-
-

@@ -18,20 +18,23 @@ export const SocietySection = styled.section`
 
 export const SocietyContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 380px;
+  /* Two-column layout: main content and a sidebar card */
+  grid-template-columns: 2fr 360px;
   gap: 40px;
   max-width: 1280px;
   margin: 0 auto;
   align-items: start;
 
   @media (max-width: 1100px) {
+    /* slightly narrower sidebar on medium screens */
     grid-template-columns: 1fr 320px;
     gap: 32px;
   }
 
   @media (max-width: 900px) {
+    /* stack vertically on small screens */
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
 `;
 
@@ -222,6 +225,23 @@ export const FeatureCard = styled.div`
     line-height: 1.6;
     margin: 0;
   }
+
+  @media (max-width: 640px) {
+    padding: 20px 16px;
+
+    .icon-box {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 16px;
+
+      i {
+        font-size: 1.6rem;
+      }
+    }
+
+    h4 { font-size: 1.05rem; }
+    p { font-size: 0.95rem; }
+  }
 `;
 
 export const ComparisonTable = styled.table`
@@ -232,6 +252,11 @@ export const ComparisonTable = styled.table`
   border-radius: 12px;
   overflow: hidden;
 
+  /* allow horizontal scrolling on narrow viewports */
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
   th {
     background: linear-gradient(90deg, #1C2951, #D4AF37);
     color: white;
@@ -241,12 +266,14 @@ export const ComparisonTable = styled.table`
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   td {
     padding: 16px;
     border-bottom: 1px solid rgba(28, 41, 81, 0.1);
     background: white;
+    white-space: nowrap;
   }
 
   tr:last-child td {
@@ -292,17 +319,29 @@ export const HighlightBox = styled.div`
 
 export const SectionLottie = styled.div`
   width: 100%;
-  max-width: 400px;
-  height: 300px;
+  max-width: 420px;
+  height: auto;
   margin: 40px auto;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 640px) {
+    margin: 24px auto;
+    max-width: 100%;
+  }
 `;
 
 export const SocietySidebar = styled.aside`
-  position: sticky;
-  top: 20px;
+  /* Keep sidebar visually separate; let inner wrapper be the card */
+  position: relative;
+  top: 0;
+
+  @media (min-width: 901px) {
+    /* sticky on larger viewports */
+    position: sticky;
+    top: 20px;
+  }
 
   @media (max-width: 900px) {
     position: relative;
@@ -311,22 +350,67 @@ export const SocietySidebar = styled.aside`
 `;
 
 export const SidebarScrollWrapper = styled.div`
-  max-height: calc(100vh - 40px);
+  /* Render the sidebar content as a card with its own scroll on tall viewports */
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(28, 41, 81, 0.08);
+  border: 1px solid rgba(28, 41, 81, 0.06);
+
+  max-height: calc(100vh - 80px);
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #D4AF37 rgba(28, 41, 81, 0.1);
+  scrollbar-color: #D4AF37 rgba(28, 41, 81, 0.08);
 
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
 
   &::-webkit-scrollbar-track {
-    background: rgba(28, 41, 81, 0.05);
-    border-radius: 3px;
+    background: rgba(28, 41, 81, 0.02);
+    border-radius: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
     background: #D4AF37;
-    border-radius: 3px;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 900px) {
+    /* on mobile make the sidebar full width card below the content */
+    max-height: none;
+    overflow: visible;
+    padding: 16px;
+    border-radius: 12px;
+  }
+`;
+
+export const ContentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 32px;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+`;
+
+export const SideFormColumn = styled.div`
+  position: relative;
+
+  @media (min-width: 901px) {
+    position: sticky;
+    top: 20px;
+  }
+
+  @media (max-width: 900px) {
+    position: relative;
+    top: 0;
   }
 `;

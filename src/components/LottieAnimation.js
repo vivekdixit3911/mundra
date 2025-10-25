@@ -2,12 +2,22 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const AnimationContainer = styled.div`
+  /* Use the provided width but never overflow the parent. Allow the SVG injected by lottie to scale. */
   width: ${props => props.width || "300px"};
-  height: ${props => props.height || "300px"};
+  max-width: 100%;
+  height: auto;
+  max-height: ${props => props.height || "300px"};
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Ensure the injected SVG scales responsively */
+  svg {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
 `;
 
 const LottieAnimation = ({ src, width, height, autoplay = true, loop = true }) => {
