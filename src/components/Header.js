@@ -98,8 +98,11 @@ const MainContent = styled.div`
   justify-content: space-between;
   align-items: center;
   
-  @media (max-width: 768px) {
+  /* Allow content to wrap on very small screens to avoid overflow */
+  @media (max-width: 480px) {
     padding: 0 0.5rem;
+    gap: 8px;
+    align-items: center;
   }
 `;
 
@@ -109,15 +112,25 @@ const Logo = styled(Link)`
   gap: 1rem;
   text-decoration: none;
   color: inherit;
+  
+  /* Prevent the logo from overflowing on small screens */
+  max-width: 60%;
+  flex: 0 1 auto;
 
   img {
     height: 50px;
     width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    display: block;
   }
 
   .logo-text {
     display: flex;
     flex-direction: column;
+    
+    /* Allow the text to shrink and truncate on narrow widths */
+    min-width: 0;
 
     .main-text {
       font-size: 1.8rem;
@@ -127,6 +140,9 @@ const Logo = styled(Link)`
       -webkit-text-fill-color: transparent;
       background-clip: text;
       line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .sub-text {
@@ -142,11 +158,10 @@ const Logo = styled(Link)`
     .logo-text {
       display: flex;
       flex-direction: column;
-      
       .main-text {
         font-size: 1.2rem;
       }
-      
+
       .sub-text {
         font-size: 0.6rem;
       }
@@ -158,16 +173,30 @@ const Logo = styled(Link)`
       .main-text {
         font-size: 1rem;
       }
-      
+
+      /* Hide the sub-text on very small screens to save space */
       .sub-text {
-        font-size: 0.5rem;
+        display: none;
       }
     }
   }
 
   @media (max-width: 480px) {
     img {
-      height: 35px;
+      height: 36px;
+      max-width: 120px;
+    }
+  }
+
+  /* Ultra small screens: show icon-only logo to preserve space */
+  @media (max-width: 360px) {
+    .logo-text {
+      display: none;
+    }
+
+    img {
+      height: 40px;
+      max-width: 90px;
     }
   }
 `;
@@ -764,7 +793,7 @@ const Header = () => {
       ]
     },
     'tax-compliance': {
-      title: 'Tax & Compliance',
+      title: 'Secretarial services',
       icon: 'fas fa-calculator',
       services: [
         {
@@ -1131,8 +1160,8 @@ const Header = () => {
             <i className="fas fa-times"></i>
           </button>
 
-          <div className="mobile-logo" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem', padding: '1rem', background: '#f8fafc', borderRadius: '12px' }}>
-            <img src="/assets/logo.png" alt="Mundra Legal" style={{ height: '50px', width: 'auto' }} />
+          <div className="mobile-logo" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem', padding: '0.75rem', background: '#f8fafc', borderRadius: '12px' }}>
+            <img src="/assets/logo.png" alt="Mundra Legal" style={{ height: '40px', width: 'auto', maxWidth: '140px' }} />
             {/* <div className="logo-text">
               <div className="main-text" style={{ fontSize: '1.2rem', fontWeight: '700', color: '#1C2951', marginBottom: '0.2rem' }}>Mundra Legal</div>
               <div className="sub-text" style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: '500' }}>ODR • TM • Registrations & Compliance</div>

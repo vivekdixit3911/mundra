@@ -17,26 +17,37 @@ const AnnualFilingAndRoc = () => {
       />
 
       <PageContent>
+        <div className="quick-links" aria-label="Quick links">
+          <div className="ql-container" role="navigation" aria-label="Quick links navigation">
+            <a href="#overview">Overview</a>
+            <a href="#importance">Importance</a>
+            <a href="#checklist">Checklist</a>
+            <a href="#documents">Documents</a>
+            <a href="#requirements">Requirements</a>
+            <a href="#due-dates">Due Dates</a>
+            <a href="#faqs">FAQs</a>
+          </div>
+        </div>
         <div className="container wpc-container">
           <main className="wpc-main">
-            <div style={{display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '18px'}}>
-              <div style={{flex: 1}}>
-                <h1>Annual Filing of Company – Ensure 100% Compliance with Mundra Legal</h1>
+            <div style={{display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '18px', flexWrap: 'wrap'}}>
+              <div style={{flex: '1 1 300px', minWidth: '280px'}}>
+                <h1 id="overview">Annual Filing of Company – Ensure 100% Compliance with Mundra Legal</h1>
                 <p>Under the Companies Act, 2013, every registered company in India — whether Private Limited, Public Limited, One Person Company (OPC), or Section 8 Company — must complete its annual filing with the Registrar of Companies (ROC). These filings provide a transparent record of the company’s financial performance, shareholding structure, and management details.</p>
                 <p>At Mundra Legal, we simplify your annual compliance process — from preparing accurate financial statements to filing AOC-4, MGT-7, and other mandatory forms — ensuring full legal adherence and zero penalties.</p>
               </div>
-              <div style={{width: 220}}>
+              <div style={{width: '220px', maxWidth: '100%', flexShrink: 0}}>
                 {/* single Lottie player instance (renders as SVG in DOM) */}
                 <Player
                   src="/assets/Drafts/Business.json"
                   loop
                   autoplay
-                  style={{ width: 220, height: 220 }}
+                  style={{ width: '100%', maxWidth: 220, height: 'auto' }}
                 />
               </div>
             </div>
 
-            <h2>
+            <h2 id="importance">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 10}} aria-hidden="true">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="3" y="4" width="14" height="16" rx="2" stroke="#1C2951" strokeWidth="1.5" fill="#fff" />
@@ -48,7 +59,7 @@ const AnnualFilingAndRoc = () => {
             </h2>
             <p>Annual filing is more than a routine task — it’s a legal obligation and a sign of corporate integrity. Failure to comply can lead to heavy penalties, loss of active status, or even the company being struck off from the ROC.</p>
 
-            <h3>
+            <h3 id="importance-detail">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2l2 5 5 .5-4 3 1.2 5L12 13l-4.2 2.5L9 10 5 7.5 10 7 12 2z" fill="#D4AF37" />
@@ -64,7 +75,7 @@ const AnnualFilingAndRoc = () => {
               <li>Prevents penalties and legal consequences</li>
             </ul>
 
-            <h3>
+            <h3 id="checklist">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 11l2 2 4-4" stroke="#1C2951" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
@@ -82,7 +93,7 @@ const AnnualFilingAndRoc = () => {
               <li><strong>Annual General Meeting (AGM) Compliance</strong><br/>Conducting AGM, recording minutes, and filing related resolutions with the ROC.</li>
             </ol>
 
-            <h3>
+            <h3 id="documents">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 7h10v10H7z" stroke="#1C2951" strokeWidth="1.4" fill="#fff" />
@@ -122,7 +133,7 @@ const AnnualFilingAndRoc = () => {
               <li><strong>Director’s Report (Section 134)</strong><br/>Directors must prepare and submit an annual report outlining the company’s performance, CSR activities, financial highlights, and governance compliance.</li>
             </ol>
 
-            <h3>
+            <h3 id="requirements">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 6h16M4 12h16M4 18h16" stroke="#1C2951" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -141,7 +152,7 @@ const AnnualFilingAndRoc = () => {
               <li>Environmental and Industrial Law Compliance</li>
             </ul>
 
-            <h3>
+            <h3 id="due-dates">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="3" y="4" width="18" height="16" rx="2" stroke="#1C2951" strokeWidth="1.2" fill="#fff" />
@@ -189,7 +200,7 @@ const AnnualFilingAndRoc = () => {
               </table>
             </div>
 
-            <h3>
+            <h3 id="penalties">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2l3 7h6l-5 4 2 7-6-4-6 4 2-7-5-4h6l3-7z" fill="#D4AF37" />
@@ -205,7 +216,7 @@ const AnnualFilingAndRoc = () => {
               <li>In severe cases, strike-off under Section 248</li>
             </ul>
 
-            <h3>
+            <h3 id="assistance">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2a7 7 0 100 14 7 7 0 000-14z" stroke="#1C2951" strokeWidth="1.4" fill="#fff" />
@@ -222,7 +233,7 @@ const AnnualFilingAndRoc = () => {
               <li><strong>Continuous Compliance Monitoring</strong><br/>Our system sends automated reminders and updates to ensure no due date is missed.</li>
             </ol>
 
-            <h3>
+            <h3 id="why-choose">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="12" cy="12" r="9" stroke="#1C2951" strokeWidth="1.2" fill="#fff" />
@@ -240,7 +251,7 @@ const AnnualFilingAndRoc = () => {
               <li>High Accuracy &amp; On-Time Filing Guarantee</li>
             </ul>
 
-            <h3>
+            <h3 id="faqs">
               <span style={{display: 'inline-flex', alignItems: 'center', marginRight: 8}} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="#1C2951" strokeWidth="1.2" fill="#fff" />

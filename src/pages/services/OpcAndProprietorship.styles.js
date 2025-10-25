@@ -89,6 +89,14 @@ export const OpcMain = styled.div`
         margin-bottom: 0.5rem;
         line-height: 1.7;
     }
+
+    @media (max-width: 768px) {
+        padding: 32px 20px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 24px 14px;
+    }
 `;
 
 export const Byline = styled.p`
@@ -150,6 +158,9 @@ export const SidebarWrapper = styled.div`
         width: 100%;
         position: static !important;
     }
+    @media (max-width: 480px) {
+        padding: 18px;
+    }
 `;
 
 export const QuickLinksNav = styled.nav`
@@ -190,6 +201,11 @@ export const QuickLinksNav = styled.nav`
         &:hover {
             background-color: #f0f0f0;
         }
+    }
+
+    @media (max-width: 480px) {
+        .ql-container { padding: 8px 12px; gap: 10px; }
+        .ql-container a { font-size: 0.85rem; padding: 6px 10px; }
     }
 `;
 

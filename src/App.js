@@ -806,9 +806,9 @@ function App() {
 
   const HomePage = () => (
     <AppContainer>
-      <LegalDisclaimer />
       <Header />
       <Hero />
+  <LegalDisclaimer />
       {/* <TrustedCompanies /> */}
 
       {/* Enhanced About Section with Lottie animations */}

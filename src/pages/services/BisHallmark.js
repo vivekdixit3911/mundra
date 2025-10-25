@@ -49,6 +49,14 @@ export const BailMattersContainer = styled.div`
     border-radius: 20px;
     box-shadow: var(--shadow-lg);
     border: 1px solid rgba(28, 41, 81, 0.08);
+
+    @media (max-width: 768px) {
+      padding: 32px 24px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 24px 16px;
+    }
   }
 
   .bail-main h1 {
@@ -57,6 +65,10 @@ export const BailMattersContainer = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 12px;
+
+    @media (max-width: 768px) {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    }
   }
 
   .bail-main h2 {
@@ -65,6 +77,16 @@ export const BailMattersContainer = styled.div`
     margin-top: 40px;
     margin-bottom: 16px;
     position: relative;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.3rem;
+      margin-top: 24px;
+    }
   }
 
   .bail-main h2::after {
@@ -91,6 +113,16 @@ export const BailMattersContainer = styled.div`
     padding: 28px;
     margin: 24px 0;
     box-shadow: var(--shadow-md);
+
+    @media (max-width: 768px) {
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 480px) {
+      padding: 16px;
+      margin: 16px 0;
+    }
   }
 
   ul {
@@ -109,6 +141,11 @@ export const BailMattersContainer = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
     margin: 24px 0;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
   }
 
   .feature-card {
@@ -118,6 +155,14 @@ export const BailMattersContainer = styled.div`
     padding: 24px;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
+
+    @media (max-width: 768px) {
+      padding: 20px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 16px;
+    }
   }
 
   .feature-card:hover {

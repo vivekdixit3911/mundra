@@ -45,16 +45,22 @@ const pulseGlow = keyframes`
 // Styled Components
 const HeroSection = styled.section`
   position: relative;
-  min-height: 65vh;
+  min-height: 55vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 120px 20px 60px;
+  padding: 100px 20px 48px;
   background: linear-gradient(135deg, #2B4A7C 0%, #3B5A9A 50%, #4A6FB8 100%);
 
   @media screen and (max-width: 768px) {
-    min-height: 55vh;
+    min-height: 48vh;
+    padding: 80px 18px 36px;
+  }
+
+  @media screen and (max-width: 480px) {
+    min-height: 40vh;
+    padding: 64px 12px 28px;
   }
 `;
 
@@ -112,6 +118,12 @@ const HeroContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 480px) {
+    max-width: 100%;
+    padding: 0 12px;
+  }
 `;
 
 const HeroContent = styled.div`
@@ -188,8 +200,13 @@ const HeroSubtitle = styled.p`
   color: rgba(255, 255, 255, 0.9);
   font-weight: 300;
   max-width: 700px;
-  margin: 0 auto 40px;
+  margin: 0 auto 28px;
   animation: ${fadeInUp} 0.8s ease-out 0.2s both;
+
+  @media screen and (max-width: 480px) {
+    margin-bottom: 18px;
+    font-size: 0.98rem;
+  }
 `;
 
 const HeroCtaGroup = styled.div`

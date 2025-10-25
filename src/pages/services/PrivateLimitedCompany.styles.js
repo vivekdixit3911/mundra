@@ -21,6 +21,7 @@ export const PLCContainer = styled.div`
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    padding: 0 16px;
   }
 `;
 
@@ -30,6 +31,8 @@ export const PLCMain = styled.article`
   border-radius: 20px;
   box-shadow: 0 16px 48px rgba(28, 41, 81, 0.12);
   border: 1px solid rgba(28, 41, 81, 0.06);
+  width: 100%;
+  box-sizing: border-box;
 
   h1 {
     font-size: clamp(2rem, 4vw, 3rem);
@@ -63,6 +66,10 @@ export const SectionLottie = styled.div`
   align-items: center;
   justify-content: center;
   & > * { width: 100%; height: auto; max-height: 360px; }
+  @media (max-width: 480px) {
+    max-width: 100%;
+    margin: 18px auto;
+  }
 `;
 
 export const FeatureGrid = styled.div`
@@ -168,6 +175,11 @@ export const TimelineMarker = styled.div`
 
 export const PLCSidebar = styled.aside`
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  @media (max-width: 900px) {
+    margin-top: 20px;
+  }
 `;
 
 export const SidebarScrollWrapper = styled.div`
@@ -238,14 +250,6 @@ export const QuickLinksBar = styled.nav`
     text-decoration: none;
     padding: 8px 12px;
     border-radius: 6px;
-  @media (max-width: 768px) {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    thead { display: none; }
-    tr { display: table-row; }
-    td { display: table-cell; padding: 10px; }
-  }
     background: rgba(255, 255, 255, 0.03);
     font-weight: 600;
     white-space: nowrap;
@@ -257,11 +261,25 @@ export const QuickLinksBar = styled.nav`
     }
   }
 
+  /* Small-screen tweaks: keep bar scrollable but compact the items */
+  @media (max-width: 768px) {
+    gap: 8px;
+    padding: 8px 10px;
+
+    a {
+      display: inline-block;
+      padding: 8px 10px;
+      font-size: 0.95rem;
+    }
+  }
+
   @media (max-width: 640px) {
     top: 60px;
     padding: 8px 10px;
   }
 `;
+
+/* No top-level global media rules here — global overflow is controlled in GlobalStyles */
 
 export const LottieAccent = styled.span`
   display: inline-block;

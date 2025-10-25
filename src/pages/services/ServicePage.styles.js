@@ -129,35 +129,36 @@ export const PageContent = styled.section`
   }
 
   /* WPC / VNO specific styles */
+  /* Left-anchored quick-links: always visible on desktop, horizontally scrollable when needed (no arrows). */
   .quick-links {
+    /* hide by default on large screens; show only on small screens via media queries */
+    display: none;
     position: fixed;
-    left: 50%;
-    top: 90px;
-    transform: translateX(-50%);
-    z-index: 950;
-    transition: all 0.25s ease;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .quick-links.visible {
-    opacity: 1;
-    visibility: visible;
+    left: 20px;
+    top: 120px;
+    z-index: 995;
+    transition: all 0.2s ease;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+    width: auto;
+    max-width: calc(100% - 40px);
   }
 
   .quick-links .ql-container {
-    display: flex;
-    gap: 10px;
+    display: inline-flex;
+    gap: 8px;
     background: rgba(255,255,255,0.98);
-    padding: 8px 12px;
+    padding: 8px 10px;
     border-radius: 999px;
     box-shadow: 0 8px 24px rgba(28,41,81,0.08);
     border: 1px solid rgba(28,41,81,0.06);
     align-items: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
   }
+
+  /* hide scrollbars but keep scrollable */
+  .quick-links .ql-container::-webkit-scrollbar { display: none; }
 
   .quick-links .ql-container a {
     color: var(--primary-color, #1C2951);
@@ -166,12 +167,42 @@ export const PageContent = styled.section`
     border-radius: 999px;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.18s ease;
+    transition: all 0.14s ease;
+    white-space: nowrap;
+    flex: 0 0 auto;
   }
 
-  .quick-links .ql-container a:hover {
+  .quick-links .ql-container a:hover,
+  .quick-links .ql-container a:focus {
     background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.06));
     color: var(--primary-color, #1C2951);
+  }
+
+  @media (max-width: 1100px) {
+    .quick-links { top: 100px; left: 16px; }
+  }
+
+  /* On small screens, place quick-links within flow at the top of the content so it doesn't cover text */
+  @media (max-width: 900px) {
+    .quick-links {
+      display: block;
+      position: relative;
+      left: 0;
+      top: 0;
+      margin-bottom: 12px;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .quick-links .ql-container {
+      display: flex;
+      gap: 8px;
+      padding: 8px 6px;
+      border-radius: 12px;
+      overflow-x: auto;
+    }
+
+    .quick-links .ql-container a { padding: 6px 10px; font-size: 0.92rem; }
   }
 
   .wpc-byline {
@@ -298,6 +329,217 @@ export const PageContent = styled.section`
 
   @media (max-width: 480px) {
     padding: 30px 12px;
+  }
+
+  /* ========================================
+     UNIVERSAL RESPONSIVE ENHANCEMENTS
+     ======================================== */
+
+  /* Lists - better mobile spacing */
+  ul, ol {
+    padding-left: 24px;
+    margin: 16px 0;
+
+    @media (max-width: 768px) {
+      padding-left: 20px;
+      margin: 14px 0;
+    }
+
+    @media (max-width: 480px) {
+      padding-left: 18px;
+      margin: 12px 0;
+    }
+  }
+
+  li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+
+    @media (max-width: 768px) {
+      margin-bottom: 8px;
+      font-size: 0.98rem;
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Tables - full responsive with horizontal scroll */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Wrapper for table overflow */
+  .table-wrapper,
+  div[style*="overflowX"] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+    @media (max-width: 768px) {
+      margin: 16px -8px;
+    }
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+
+    @media (max-width: 768px) {
+      padding: 10px 8px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 8px 6px;
+    }
+  }
+
+  /* Images and media - responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Lottie players and animations */
+  lottie-player,
+  .lottie-wrapper {
+    max-width: 100%;
+    height: auto !important;
+
+    @media (max-width: 768px) {
+      width: 100% !important;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 480px) {
+      max-width: 240px;
+    }
+  }
+
+  /* Flex layouts - wrap on mobile */
+  [style*="display: flex"],
+  [style*="display:flex"] {
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      gap: 16px !important;
+    }
+  }
+
+  /* Fixed width elements - make responsive */
+  [style*="width: 220"],
+  [style*="width:220"] {
+    @media (max-width: 768px) {
+      width: 180px !important;
+    }
+
+    @media (max-width: 480px) {
+      width: 140px !important;
+    }
+  }
+
+  /* Strong/bold text - better sizing */
+  strong {
+    font-weight: 600;
+    color: var(--primary-color, #1C2951);
+  }
+
+  /* Buttons and links - touch friendly */
+  a, button {
+    @media (max-width: 768px) {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  /* Better spacing for small screens */
+  @media (max-width: 480px) {
+    h1 { margin-bottom: 0.8rem; }
+    h2 { margin-top: 1.5rem; margin-bottom: 0.8rem; }
+    h3 { margin-top: 1.2rem; margin-bottom: 0.6rem; }
+    p { margin-bottom: 0.8rem; }
+  }
+
+  /* Callouts and highlight boxes */
+  .callout,
+  .highlight-box {
+    @media (max-width: 768px) {
+      padding: 14px;
+      margin: 14px 0;
+    }
+
+    @media (max-width: 480px) {
+      padding: 12px;
+      margin: 12px 0;
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Stats grid - single column on very small screens */
+  .stats-grid {
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+
+  /* Better SVG icon sizing */
+  svg {
+    @media (max-width: 768px) {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  /* Inline styles override - flex wrapping */
+  .wpc-main > div[style*="display: flex"],
+  .wpc-main > div[style*="display:flex"] {
+    @media (max-width: 768px) {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+    }
+  }
+
+  /* Better code/pre blocks */
+  code, pre {
+    overflow-x: auto;
+    word-wrap: break-word;
+    
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Ensure no horizontal overflow */
+  * {
+    max-width: 100%;
+  }
+
+  /* Better select/input on touch devices */
+  select, input, textarea {
+    @media (max-width: 768px) {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
   }
 `;
 

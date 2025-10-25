@@ -390,6 +390,92 @@ const GlobalStyles = createGlobalStyle`
       font-size: 0.9rem;
     }
   }
+
+  /* Additional global responsive overrides for service pages
+     Many service pages use a two-column grid with a 380px sidebar.
+     Rather than edit each file we provide safe, low-risk overrides
+     that make these layouts stack and media elements fluid on small screens. */
+  @media (max-width: 900px) {
+    /* Force any container-like grids to collapse to a single column */
+    [class*="-container"],
+    [class*="container"] {
+      grid-template-columns: 1fr !important;
+      gap: 24px !important;
+    }
+
+    /* Make sidebars full-width and flow under content */
+    .sidebar-card,
+    .apeda-sidebar,
+    .bc-sidebar,
+    .company-sidebar,
+    .wpc-sidebar,
+    .apeda-sidebar,
+    .sidebar,
+    aside {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    /* Lottie and inline animation sizing */
+    .inline-lottie,
+    .section-lottie,
+    .lottie-hero,
+    .sidebar-lottie {
+      margin: 18px auto !important;
+      width: min(260px, 80%) !important;
+      height: auto !important;
+    }
+
+    /* Ensure dotlottie and LottieAnimation inner divs scale down */
+    dotlottie-wc,
+    dotlottie-wc *,
+    .inline-lottie > div,
+    .section-lottie > div,
+    .lottie-hero > div {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 120px !important;
+      max-height: 360px !important;
+    }
+
+    /* Images and media are fluid */
+    img,
+    video,
+    iframe {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+
+    /* Make tables horizontally scrollable instead of overflowing */
+    table,
+    .comparison-table,
+    .faq-table {
+      display: block !important;
+      width: 100% !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* Reduce padding for heavy content blocks */
+    .company-main,
+    .bc-main,
+    .apeda-main,
+    .wpc-main,
+    .private-main,
+    .main-card {
+      padding: 24px !important;
+    }
+
+    /* Ensure feature grids become single column where appropriate */
+    .feature-grid,
+    .feature-card,
+    .stats-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
 `;
 
 export default GlobalStyles;

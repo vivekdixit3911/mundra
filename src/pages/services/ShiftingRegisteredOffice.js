@@ -20,17 +20,17 @@ const ShiftingRegisteredOffice = () => {
       <PageContent>
         <div className="container wpc-container">
           <main className="wpc-main">
-            <div style={{display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '18px'}}>
-              <div style={{flex: 1}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '18px', flexWrap: 'wrap'}}>
+              <div style={{flex: '1 1 300px', minWidth: '280px'}}>
                 <h1>Shifting of Registered Office of the Company</h1>
-                <p>Moving a company’s registered office requires compliance with the Companies Act, 2013 and coordination with the Registrar of Companies (ROC). Mundra Legal handles the entire process — drafting resolutions, preparing and filing the required forms, coordinating with the ROC and local authorities, and ensuring a smooth shift of address without disruption to your business.</p>
+                <p>Moving a company's registered office requires compliance with the Companies Act, 2013 and coordination with the Registrar of Companies (ROC). Mundra Legal handles the entire process — drafting resolutions, preparing and filing the required forms, coordinating with the ROC and local authorities, and ensuring a smooth shift of address without disruption to your business.</p>
               </div>
-              <div style={{width: 220}}>
+              <div style={{width: '220px', maxWidth: '100%', flexShrink: 0}}>
                 <Player
                   src="/assets/Drafts/registration.json"
                   loop
                   autoplay
-                  style={{ width: 220, height: 220 }}
+                  style={{ width: '100%', maxWidth: 220, height: 'auto' }}
                 />
               </div>
             </div>
