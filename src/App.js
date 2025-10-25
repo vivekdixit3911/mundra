@@ -13,6 +13,7 @@ import ContactUs from "./pages/ContactUs";
 import Events from "./pages/Events";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import Sitemap from "./pages/Sitemap";
 import LeaseDeed from "./pages/services/LeaseDeed";
 import StampPaperNotary from "./pages/services/StampPaperNotary";
 import PropertyRegistry from "./pages/services/PropertyRegistry";
@@ -1460,6 +1461,7 @@ function App() {
         <Route path="/about" element={<About />} />
   <Route path="/terms" element={<Terms />} />
   <Route path="/privacy" element={<Privacy />} />
+    <Route path="/sitemap" element={<Sitemap />} />
         <Route path="/events" element={<Events />} />
         <Route path="/services" element={<HomePage />} />
         <Route path="/contact" element={<ContactUs />} />

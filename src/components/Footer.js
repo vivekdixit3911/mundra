@@ -474,7 +474,7 @@ const Footer = () => {
           <div className="footer-links">
             <Link to="/privacy">Privacy</Link>
             <Link to="/terms">Terms</Link>
-            <a href="/sitemap.xml">Sitemap</a>
+            <Link to="/sitemap">Sitemap</Link>
           </div>
         </FooterBottom>
       </FooterContent>
