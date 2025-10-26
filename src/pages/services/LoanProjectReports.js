@@ -4,6 +4,8 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ServiceHero from '../../components/ServiceHero';
 
+import { Player } from '@lottiefiles/react-lottie-player';
+
 import {
     GlobalLoanPageStyle,
     LoanSection,
@@ -116,9 +118,22 @@ const LoanProjectReports = () => {
                         <h1>Loan & Project Report Preparation Services</h1>
                         <LoanByline>Professional DPR & Bankable Project Reports by Mundra Legal Consultants</LoanByline>
 
-                        <SectionLottie>
-                            <dotlottie-wc src="/assets/lottiefiles/Business analytics animation.lottie" autoplay loop></dotlottie-wc>
-                        </SectionLottie>
+                        {/* Inline Lottie JSON player (fallback to dotlottie webcomponent below) */}
+                        <div style={{ display: 'flex', gap: 18, alignItems: 'center', margin: '18px 0' }}>
+                            <div style={{ width: 300, maxWidth: '40%' }} aria-hidden>
+                                <Player
+                                    src="/assets/Drafts/Business%20analytics%20animation.json"
+                                    autoplay
+                                    loop
+                                    style={{ height: 220, width: '100%' }}
+                                />
+                            </div>
+                            <div style={{ flex: 1 }}>
+                               
+                            </div>
+                        </div>
+
+                       
 
                         <p>A <strong>Project Report</strong> (also known as Detailed Project Report or DPR) is a comprehensive document that outlines the complete plan for a business venture or expansion. It is essential for securing loans from banks and financial institutions, attracting investors, and demonstrating project viability.</p>
                         <p>At <strong>Mundra Legal Consultants</strong>, we prepare professional, bankable project reports that meet lender requirements and regulatory standards. Our reports include detailed financial projections, technical assessments, market analysis, and compliance documentation.</p>
@@ -141,17 +156,23 @@ const LoanProjectReports = () => {
                         <h3 id="importance">Why Project Reports are Critical:</h3>
                         <FeatureGrid>
                             <FeatureCard>
-                                <div className="icon-box"><i className="fas fa-university"></i></div>
-                                <h4>Bank Loan Approval</h4>
-                                <p>Banks require detailed project reports to assess creditworthiness and loan repayment capacity.</p>
-                            </FeatureCard>
+                                    <div className="icon-box">
+                                        <img src="/assets/Drafts/icon-growth.svg" alt="Bank Loan Approval" style={{ width: 44, height: 44 }} />
+                                    </div>
+                                    <h4>Bank Loan Approval</h4>
+                                    <p>Banks require detailed project reports to assess creditworthiness and loan repayment capacity.</p>
+                                </FeatureCard>
                             <FeatureCard>
-                                <div className="icon-box"><i className="fas fa-chart-line"></i></div>
+                                <div className="icon-box">
+                                    <img src="/assets/Drafts/icon-investor.svg" alt="Investor Confidence" style={{ width: 44, height: 44 }} />
+                                </div>
                                 <h4>Investor Confidence</h4>
                                 <p>Professional reports demonstrate project viability and attract potential investors.</p>
                             </FeatureCard>
                             <FeatureCard>
-                                <div className="icon-box"><i className="fas fa-clipboard-check"></i></div>
+                                <div className="icon-box">
+                                    <img src="/assets/Drafts/icon-documents.svg" alt="Strategic Planning" style={{ width: 44, height: 44 }} />
+                                </div>
                                 <h4>Strategic Planning</h4>
                                 <p>Helps in systematic planning, risk assessment, and resource allocation.</p>
                             </FeatureCard>

@@ -1,441 +1,246 @@
 import React from 'react';
+import styled from 'styled-components';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ServiceHero from '../../components/ServiceHero';
 import SidebarForm from '../../components/SidebarForm';
-import LottieAnimation from '../../components/LottieAnimation';
-import { CompanyFormationContainer } from './CompanyFormation.styles.js';
+import { Player } from '@lottiefiles/react-lottie-player';
+
+const PageWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background: #fff;
+`;
+
+const ContentSection = styled.main`
+	max-width: 1400px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 48px 20px 80px;
+	box-sizing: border-box;
+
+	@media (max-width: 768px) {
+		padding: 36px 16px 60px;
+	}
+
+	@media (max-width: 480px) {
+		padding: 28px 12px 48px;
+	}
+`;
+
+const Grid = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 360px;
+	gap: 32px;
+	align-items: start;
+
+	@media (max-width: 1024px) {
+		grid-template-columns: 1fr 320px;
+	}
+
+	@media (max-width: 820px) {
+		grid-template-columns: 1fr;
+	}
+`;
+
+const Article = styled.article`
+	background: transparent;
+
+	h2 {
+		font-family: 'Playfair Display', serif;
+		font-size: 1.8rem;
+		margin-bottom: 12px;
+		color: #1C2951;
+	}
+
+	p {
+		color: #334155;
+		line-height: 1.75;
+		margin-bottom: 16px;
+		font-size: 1rem;
+	}
+
+	ul {
+		margin: 8px 0 20px 20px;
+		color: #334155;
+		li {
+			margin-bottom: 8px;
+		}
+	}
+
+	.cta-row {
+		display: flex;
+		gap: 12px;
+		margin-top: 18px;
+
+		a, button {
+			background: linear-gradient(135deg,#D4AF37 0%,#E6C57F 100%);
+			color: #1C2951;
+			padding: 10px 18px;
+			border-radius: 10px;
+			font-weight: 700;
+			text-decoration: none;
+			border: none;
+			cursor: pointer;
+		}
+	}
+`;
+
+	const VisualGrid = styled.div`
+		display: grid;
+		grid-template-columns: 1fr 360px;
+		gap: 24px;
+		align-items: center;
+
+		@media (max-width: 820px) {
+			grid-template-columns: 1fr;
+		}
+
+		.visual-box {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #f8fafc;
+			border-radius: 12px;
+			padding: 18px;
+			box-shadow: 0 8px 24px rgba(28,41,81,0.06);
+			border: 1px solid rgba(28,41,81,0.04);
+		}
+
+		.text-col {
+			padding-right: 6px;
+		}
+	`;
+
+	const TrustRow = styled.div`
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		margin-top: 18px;
+
+		img {
+			height: 40px;
+			width: auto;
+		}
+	`;
+
+const Side = styled.aside`
+	position: relative;
+	align-self: start;
+
+	/* Make sidebar sticky on wider screens so the form scrolls with the user */
+	@media (min-width: 821px) {
+		position: sticky;
+		top: 120px; /* leave space for fixed header */
+		height: calc(100vh - 140px);
+	}
+
+	@media (max-width: 820px) {
+		position: relative;
+		height: auto;
+	}
+
+	.sidebar-inner {
+		height: 100%;
+		overflow: auto;
+		padding-right: 6px; /* allow inner scroll without layout shift */
+	}
+`;
 
 const CompanyFormation = () => {
+	return (
+		<PageWrapper>
+			<Header />
 
-  return (
-    <>
-      <Header />
-      <ServiceHero
-        title="Company Formation in India"
-        subtitle="Expert Business Registration Services by Mundra Legal Consultants."
-        breadcrumb="Company Formation"
-      />
-      <CompanyFormationContainer>
-        <section id="company-content" className="company-section" aria-labelledby="company-heading">
-            <div className="company-container">
-                <div className="company-main">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '20px' }}>
-                        <div style={{ flex: 1 }}>
-                            <h1 id="company-heading">Company Formation in India — A Complete Overview</h1>
-                            <p className="company-byline">Expert Business Registration Services by Mundra Legal Consultants</p>
-                        </div>
-                        <div style={{ flex: '0 0 200px' }}>
-                            <LottieAnimation
-                                src="/assets/Drafts/Business.json"
-                                width="200px"
-                                height="200px"
-                            />
-                        </div>
-                    </div>
+			<ServiceHero
+				title="Company Formation"
+				subtitle="Expert guidance to register and structure your business — Private Limited, OPC, LLP and more. Fast, reliable & compliant."
+				breadcrumb="Company Formation"
+			/>
 
-                    <h2 id="overview">Company Formation — An Overview</h2>
+			<ContentSection>
+							<Grid>
+								<Article>
+									<VisualGrid>
+										<div className="text-col">
+											<h2>Start your company the right way</h2>
+											<p>
+												We help entrepreneurs and businesses with end-to-end company formation
+												services. From choosing the right entity and drafting incorporation
+												documents to compliance and government filings — our team simplifies
+												the process so you can focus on growth.
+											</p>
 
-                    <p>
-                        Forming a company in India is the first and most crucial step towards establishing a legally recognized business. At <strong>Mundra Legal Consultants</strong>, we simplify the company formation process for entrepreneurs, startups, and growing enterprises across India.
-                    </p>
+											<h3>Why choose us?</h3>
+											<ul>
+												<li>Expert company secretaries & legal advisors with hands-on experience</li>
+												<li>Fast paperwork handling and government liaison</li>
+												<li>Transparent pricing and clear timelines</li>
+												<li>Post-incorporation compliance support — so you start right</li>
+											</ul>
+										</div>
 
-                    <p>
-                        Company formation gives a business its <strong>legal identity, limited liability protection, and corporate credibility</strong> under the Companies Act, 2013. It allows the business to function as a separate legal entity—capable of owning property, entering into contracts, and continuing operations regardless of ownership changes.
-                    </p>
+										<div className="visual-box" aria-hidden>
+											{/* Local lottie animation from public assets Drafts */}
+											<Player
+												src="/assets/Drafts/registration.json"
+												autoplay
+												loop
+												style={{ height: 260, width: '100%', maxWidth: 320 }}
+											/>
+										</div>
+									</VisualGrid>
 
-                    <div className="callout">
-                        <p><strong>Depending on the business goals, one can choose from several structures such as:</strong></p>
-                        <ul style={{marginTop:'12px'}}>
-                            <li>Private Limited Company (Pvt. Ltd.)</li>
-                            <li>One Person Company (OPC)</li>
-                            <li>Limited Liability Partnership (LLP)</li>
-                            <li>Public Limited Company</li>
-                            <li>Section 8 (Non-Profit) Company</li>
-                            <li>Partnership Firm or Proprietorship</li>
-                        </ul>
-                    </div>
+									<h3>Our company formation services include:</h3>
+									<ul>
+										<li>Company type advisory (Private Limited, Public Limited, OPC, LLP)</li>
+										<li>Name availability & reservation</li>
+										<li>Drafting MOA/AOA and incorporation documents</li>
+										<li>DIN & DSC filing, director onboarding</li>
+										<li>GST, PAN, TAN registrations and initial compliance setup</li>
+									</ul>
 
-                    <p>
-                        Each structure carries its own compliance framework, tax benefits, and suitability for business size and nature. Our experts at <strong>Mundra Legal guide you through selection, documentation, registration, and post-formation compliance</strong>.
-                    </p>
+									<h3>Simple 4-step process</h3>
+									<ol>
+										<li>Choose entity & confirm name</li>
+										<li>Prepare documents, obtain DSC & DIN for directors</li>
+										<li>Submit incorporation filing and follow-up</li>
+										<li>Receive certificate & get post-incorporation support</li>
+									</ol>
 
-                    <h2 id="why-important">Why is Company Formation Important?</h2>
+									<p>
+										Typical timeline depends on the chosen entity and government processing
+										times — most Private Limited registrations complete within 7–14 working
+										days after submission. Our package options include documentation,
+										stakeholder advisory and 1-year post-incorporation compliance support.
+									</p>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '20px' }}>
-                        <div style={{ flex: 1 }}>
-                            <p>
-                                Company formation legally establishes your business as an independent entity. It strengthens your credibility, protects personal assets, and provides a professional foundation for sustainable growth.
-                            </p>
-                        </div>
-                        <div style={{ flex: '0 0 150px' }}>
-                            <LottieAnimation
-                                src="/assets/Drafts/Business%20analytics%20animation.json"
-                                width="150px"
-                                height="150px"
-                            />
-                        </div>
-                    </div>
+									<div className="cta-row">
+										<a href="/contact">Request a Consultation</a>
+										<a href="tel:+918506874280">Call: +91 85068 74280</a>
+									</div>
 
-                    <div className="feature-grid">
-                        <div className="feature-card">
-                            <div className="icon-box">
-                                <i className="fas fa-certificate" style={{color:'var(--primary-gold)', fontSize:'28px'}}></i>
-                            </div>
-                            <h4>Legal Recognition</h4>
-                            <p>Enables your business to operate under Indian law with full legal protection.</p>
-                        </div>
+									<TrustRow>
+										<img src="/assets/google-icon-svgrepo-com.svg" alt="Trusted by Google" />
+										<div>
+											<strong>Trusted by businesses across India</strong>
+											<div style={{ color: '#64748b', fontSize: '0.95rem' }}>Over 1,200+ companies assisted</div>
+										</div>
+									</TrustRow>
+								</Article>
 
-                        <div className="feature-card">
-                            <div className="icon-box">
-                                <i className="fas fa-building" style={{color:'var(--primary-gold)', fontSize:'28px'}}></i>
-                            </div>
-                            <h4>Separate Legal Identity</h4>
-                            <p>The company can own assets, sue, and be sued independently of its owners.</p>
-                        </div>
+											<Side>
+												<div className="sidebar-inner">
+													<SidebarForm />
+												</div>
+											</Side>
+							</Grid>
+			</ContentSection>
 
-                        <div className="feature-card">
-                            <div className="icon-box">
-                                <i className="fas fa-shield-alt" style={{color:'var(--primary-gold)', fontSize:'28px'}}></i>
-                            </div>
-                            <h4>Limited Liability</h4>
-                            <p>Protects owners' personal assets from business debts and liabilities.</p>
-                        </div>
-
-                        <div className="feature-card">
-                            <div className="icon-box">
-                                <i className="fas fa-hand-holding-usd" style={{color:'var(--primary-gold)', fontSize:'28px'}}></i>
-                            </div>
-                            <h4>Funding Access</h4>
-                            <p>Helps raise capital from investors, banks, and financial institutions.</p>
-                        </div>
-
-                        <div className="feature-card">
-                            <div className="icon-box">
-                                <i className="fas fa-infinity" style={{color:'var(--primary-gold)', fontSize:'28px'}}></i>
-                            </div>
-                            <h4>Perpetual Succession</h4>
-                            <p>The company continues regardless of ownership changes or death of founders.</p>
-                        </div>
-
-                        <div className="feature-card">
-                            <div className="icon-box">
-                                <i className="fas fa-award" style={{color:'var(--primary-gold)', fontSize:'28px'}}></i>
-                            </div>
-                            <h4>Brand Credibility</h4>
-                            <p>Registered businesses gain trust from customers, vendors, and partners.</p>
-                        </div>
-
-                        <div className="feature-card">
-                            <div className="icon-box">
-                                <i className="fas fa-percentage" style={{color:'var(--primary-gold)', fontSize:'28px'}}></i>
-                            </div>
-                            <h4>Tax Benefits</h4>
-                            <p>Companies are eligible for various deductions, incentives, and GST benefits.</p>
-                        </div>
-                    </div>
-
-                    <h2 id="advantages">Advantages of Registering Your Company with Mundra Legal</h2>
-
-                    <div className="highlight-box">
-                        <h3>Key Benefits of Company Registration</h3>
-                        <ul>
-                            <li><strong>Limited Liability Protection:</strong> Protects personal wealth from company liabilities, ensuring financial safety for shareholders</li>
-                            <li><strong>Separate Legal Entity:</strong> The company operates independently of its owners, maintaining distinct legal status</li>
-                            <li><strong>Increased Credibility:</strong> A registered entity builds confidence among clients, banks, and investors</li>
-                            <li><strong>Access to Capital:</strong> Enables fundraising through equity, loans, or venture investments</li>
-                            <li><strong>Perpetual Existence:</strong> The business remains unaffected by the death or withdrawal of shareholders</li>
-                            <li><strong>Tax Efficiency:</strong> Eligible for corporate tax deductions, start-up incentives, and GST benefits</li>
-                            <li><strong>Ease of Expansion:</strong> Registered entities can easily scale operations, hire staff, and open branches</li>
-                        </ul>
-                    </div>
-
-                    <h2>Eligibility Criteria for Company Formation in India</h2>
-
-                    <p>
-                        As per the <strong>Ministry of Corporate Affairs (MCA)</strong>, the general eligibility requirements include:
-                    </p>
-
-                    <ul>
-                        <li>Minimum two directors (one must be an Indian resident)</li>
-                        <li>Minimum two shareholders (can be the same individuals)</li>
-                        <li>A unique company name approved by the Registrar of Companies (ROC)</li>
-                        <li>A registered office address in India</li>
-                        <li>Mandatory PAN, TAN, and GST registration</li>
-                        <li>Preparation of Memorandum of Association (MoA) and Articles of Association (AoA)</li>
-                        <li>Appointment of a Chartered Accountant as company auditor</li>
-                    </ul>
-
-                    <p>
-                        Our professionals at <strong>Mundra Legal ensure every eligibility requirement is met before filing</strong> to avoid rejection or delay.
-                    </p>
-
-                    <h2 id="documents">Documents Required for Company Formation</h2>
-
-                    <h3>For Directors and Shareholders</h3>
-
-                    <ul>
-                        <li><strong>PAN Card</strong> (for Indian nationals) / <strong>Passport</strong> (for foreign nationals)</li>
-                        <li>Aadhaar Card / Voter ID / Driving Licence</li>
-                        <li>Passport-size photograph</li>
-                        <li>Digital Signature Certificate (DSC)</li>
-                        <li>Director Identification Number (DIN)</li>
-                        <li>Proof of address — utility bill, bank statement, or rent agreement (not older than 2 months)</li>
-                    </ul>
-
-                    <h3>For Registered Office</h3>
-
-                    <ul>
-                        <li>Proof of ownership (Sale Deed) or Rent Agreement</li>
-                        <li>NOC from the property owner</li>
-                        <li>Latest electricity, water, or gas bill</li>
-                    </ul>
-
-                    <h3>Other Supporting Documents</h3>
-
-                    <ul>
-                        <li>Draft MoA and AoA</li>
-                        <li>Consent letters of directors and subscribers</li>
-                        <li>Declaration of compliance (Form INC-9)</li>
-                        <li>Professional verification by a practicing CA/CS</li>
-                    </ul>
-
-                    <div className="callout">
-                        <p>
-                            <strong>Mundra Legal handles document drafting, verification, and filing with the MCA portal.</strong>
-                        </p>
-                    </div>
-
-                    <h2 id="process">Step-by-Step Company Formation Process with Mundra Legal</h2>
-
-                    <div style={{ display: 'flex', justifyContent: 'center', margin: '30px 0' }}>
-                        <LottieAnimation
-                            src="/assets/Drafts/registration.json"
-                            width="250px"
-                            height="200px"
-                        />
-                    </div>
-
-                    <div className="process-timeline">
-                        <div className="process-step">
-                            <h4>Step 1: Initial Consultation</h4>
-                            <p>We assess your business model and advise on the most suitable company structure.</p>
-                        </div>
-
-                        <div className="process-step">
-                            <h4>Step 2: Digital Signature (DSC) & DIN Application</h4>
-                            <p>We obtain DSCs for all directors and apply for their Director Identification Numbers.</p>
-                        </div>
-
-                        <div className="process-step">
-                            <h4>Step 3: Company Name Reservation</h4>
-                            <p>We reserve a unique name through the MCA's RUN or SPICe+ system, ensuring compliance with Rule 8 of the Companies (Incorporation) Rules.</p>
-                        </div>
-
-                        <div className="process-step">
-                            <h4>Step 4: Preparation of Incorporation Documents</h4>
-                            <p>Drafting and filing SPICe+, e-MoA (INC-33), and e-AoA (INC-34) forms online.</p>
-                        </div>
-
-                        <div className="process-step">
-                            <h4>Step 5: Submission to MCA</h4>
-                            <p>All incorporation documents are filed electronically with the Registrar of Companies (ROC).</p>
-                        </div>
-
-                        <div className="process-step">
-                            <h4>Step 6: Verification and Approval</h4>
-                            <p>The ROC reviews your application. Upon approval, the Certificate of Incorporation (COI) is issued along with PAN and TAN.</p>
-                        </div>
-
-                        <div className="process-step">
-                            <h4>Step 7: Post-Incorporation Formalities</h4>
-                            <p>Opening a corporate bank account, GST registration, EPF/ESI registration, and setting up statutory records.</p>
-                        </div>
-                    </div>
-
-                    <div className="callout">
-                        <p><strong>Typical Timeline:</strong> 10–15 working days (depending on government processing).</p>
-                    </div>
-
-                    <h2 id="types">Types of Business Entities in India</h2>
-
-                    <div style={{ display: 'flex', justifyContent: 'center', margin: '30px 0' }}>
-                        <LottieAnimation
-                            src="/assets/Drafts/World%20map%2C%20Tallinn.json"
-                            width="250px"
-                            height="200px"
-                        />
-                    </div>
-
-                    <div style={{overflowX:'auto'}}>
-                        <table className="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Business Type</th>
-                                    <th>Legal Act</th>
-                                    <th>No. of Owners</th>
-                                    <th>Separate Legal Entity</th>
-                                    <th>Liability</th>
-                                    <th>Audit</th>
-                                    <th>Foreign Ownership</th>
-                                    <th>Ideal For</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Private Limited Company</strong></td>
-                                    <td>Companies Act, 2013</td>
-                                    <td>2–200</td>
-                                    <td>Yes</td>
-                                    <td>Limited</td>
-                                    <td>Mandatory</td>
-                                    <td>Permitted</td>
-                                    <td>Startups, SMEs</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>One Person Company (OPC)</strong></td>
-                                    <td>Companies Act, 2013</td>
-                                    <td>1</td>
-                                    <td>Yes</td>
-                                    <td>Limited</td>
-                                    <td>Mandatory</td>
-                                    <td>Not Permitted</td>
-                                    <td>Solo founders</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Limited Liability Partnership (LLP)</strong></td>
-                                    <td>LLP Act, 2008</td>
-                                    <td>2+</td>
-                                    <td>Yes</td>
-                                    <td>Limited</td>
-                                    <td>Conditional</td>
-                                    <td>Permitted</td>
-                                    <td>Professionals, small firms</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Public Limited Company</strong></td>
-                                    <td>Companies Act, 2013</td>
-                                    <td>7+</td>
-                                    <td>Yes</td>
-                                    <td>Limited</td>
-                                    <td>Mandatory</td>
-                                    <td>Permitted</td>
-                                    <td>Large-scale enterprises</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Section 8 Company</strong></td>
-                                    <td>Companies Act, 2013</td>
-                                    <td>2+</td>
-                                    <td>Yes</td>
-                                    <td>Limited</td>
-                                    <td>Mandatory</td>
-                                    <td>Permitted</td>
-                                    <td>NGOs, charitable orgs</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Partnership Firm</strong></td>
-                                    <td>Partnership Act, 1932</td>
-                                    <td>2–50</td>
-                                    <td>No</td>
-                                    <td>Unlimited</td>
-                                    <td>Not mandatory</td>
-                                    <td>Limited</td>
-                                    <td>Traditional businesses</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Proprietorship</strong></td>
-                                    <td>Not governed by specific act</td>
-                                    <td>1</td>
-                                    <td>No</td>
-                                    <td>Unlimited</td>
-                                    <td>Not mandatory</td>
-                                    <td>No</td>
-                                    <td>Freelancers, small traders</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <p>
-                        <strong>Mundra Legal helps you select and register the entity best aligned with your business goals.</strong>
-                    </p>
-
-                    <h2 id="compliance">Post-Incorporation Compliance</h2>
-
-                    <p>
-                        After company formation, maintaining compliance is mandatory under Indian corporate law. We provide <strong>end-to-end assistance for all ongoing filings and statutory obligations</strong>.
-                    </p>
-
-                    <div className="highlight-box">
-                        <h3>Mandatory Compliance Includes:</h3>
-                        <ul>
-                            <li><strong>First Board Meeting</strong> within 30 days of incorporation</li>
-                            <li><strong>Appointment of First Auditor</strong> within 30 days</li>
-                            <li><strong>Issuance of Share Certificates</strong> within 60 days</li>
-                            <li><strong>Annual General Meeting (AGM)</strong> within six months of financial year-end</li>
-                            <li><strong>Filing of Annual Return</strong> (Form MGT-7)</li>
-                            <li><strong>Filing of Financial Statements</strong> (Form AOC-4)</li>
-                            <li><strong>Income Tax Return Filing</strong></li>
-                            <li><strong>Maintenance of Statutory Registers</strong> (members, directors, charges, etc.)</li>
-                            <li><strong>Display of Company Name and CIN</strong> on all official materials</li>
-                        </ul>
-                    </div>
-
-                    <p>
-                        <strong>Mundra Legal's compliance team ensures timely filings and avoids penalties.</strong>
-                    </p>
-
-                    <h2>Why Choose Mundra Legal for Company Formation?</h2>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '20px' }}>
-                        <div style={{ flex: 1 }}>
-                            <div className="highlight-box">
-                                <ul>
-                                    <li><strong>✅ Expert Legal Advisors:</strong> In-house team of corporate lawyers, CAs, and CS professionals</li>
-                                    <li><strong>📋 End-to-End Assistance:</strong> From planning and documentation to incorporation and compliance</li>
-                                    <li><strong>💰 Transparent Pricing:</strong> No hidden fees, clear cost structure</li>
-                                    <li><strong>⚡ Faster Processing:</strong> Optimized filing and name approval timelines</li>
-                                    <li><strong>🆔 PAN, TAN & GST Setup:</strong> Included with all formation packages</li>
-                                    <li><strong>📊 Post-Incorporation Support:</strong> Annual filings, audit setup, and corporate compliance</li>
-                                    <li><strong>🇮🇳 Nationwide Reach:</strong> Services available across all Indian states</li>
-                                    <li><strong>💻 100% Digital Process:</strong> Paperless, efficient, and MCA-approved online workflow</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div style={{ flex: '0 0 150px' }}>
-                            <LottieAnimation
-                                src="/assets/Drafts/Business%20team.json"
-                                width="150px"
-                                height="150px"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="callout">
-                        <p>
-                            <strong>Ready to form your company?</strong> Contact Mundra Legal Consultants today for expert guidance and seamless business registration. Fill the form on the right or call us directly!
-                        </p>
-                    </div>
-                </div>
-
-                <aside className="company-sidebar">
-                    <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                        <LottieAnimation
-                            src="/assets/Drafts/Man%20and%20robot%20with%20computers%20sitting%20together%20in%20workplace.json"
-                            width="200px"
-                            height="200px"
-                        />
-                    </div>
-                    <div className="sidebar-scroll-wrapper">
-                        <SidebarForm />
-                    </div>
-                </aside>
-            </div>
-        </section>
-      </CompanyFormationContainer>
-      <Footer />
-    </>
-  );
+			<Footer />
+		</PageWrapper>
+	);
 };
 
 export default CompanyFormation;
