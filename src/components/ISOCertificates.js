@@ -197,6 +197,97 @@ const ViewAllCertificates = styled.div`
   }
 `;
 
+const VideosSection = styled.section`
+  margin-top: 3.5rem;
+  padding: 2.5rem 0 1rem;
+  background: linear-gradient(180deg, rgba(230,197,127,0.03) 0%, transparent 100%);
+  border-radius: 12px;
+`;
+
+const VideosContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
+
+const VideosHeader = styled.div`
+  text-align: center;
+  margin-bottom: 1.25rem;
+
+  h3 {
+    font-size: 1.5rem;
+    color: #1C2951;
+    margin: 0 0 0.5rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+  }
+`;
+
+const VideosGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const VideoCard = styled.div`
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(28,41,81,0.06);
+  border: 1px solid rgba(226,232,240,0.6);
+`;
+
+const VideoFrameWrap = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16; /* portrait to mimic shorts */
+  background: #000;
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+`;
+
+const VideoMeta = styled.div`
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .title {
+    font-size: 0.95rem;
+    color: #1C2951;
+    font-weight: 600;
+  }
+
+  .play-badge {
+    background: linear-gradient(135deg,#D4AF37 0%,#E6C57F 100%);
+    color: #122244;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+`;
+
 const ISOCertificates = () => {
   const certificates = [
     {
@@ -322,6 +413,40 @@ const ISOCertificates = () => {
             Get ISO Certified <i className="fas fa-arrow-right"></i>
           </a>
         </ViewAllCertificates>
+
+        {/* Videos / Shorts Section */}
+        <VideosSection aria-labelledby="iso-videos-heading">
+          <VideosContainer>
+            <VideosHeader>
+              <h3 id="iso-videos-heading">Certification Shorts</h3>
+              <p>Quick shorts to help you understand our Services, process and success stories — play right here.</p>
+            </VideosHeader>
+
+            <VideosGrid>
+              {[
+                { id: 'tvF30W9nmdU', title: 'Document Attestation' },
+                { id: 'QuzbDTV29QY', title: 'LMPC, WPC & EPR Registration ' },
+                { id: 'fIiBPay0Kac', title: 'Guide to Trademark Registration ' }
+              ].map((v) => (
+                <VideoCard key={v.id}>
+                  <VideoFrameWrap>
+                    <iframe
+                      title={v.title}
+                      src={`https://www.youtube.com/embed/${v.id}?rel=0&autoplay=0`}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </VideoFrameWrap>
+                  <VideoMeta>
+                    <div className="title">{v.title}</div>
+                    <div className="play-badge">Shorts</div>
+                  </VideoMeta>
+                </VideoCard>
+              ))}
+            </VideosGrid>
+          </VideosContainer>
+        </VideosSection>
       </ISOContainer>
     </ISOSection>
   );
