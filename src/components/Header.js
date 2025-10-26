@@ -1073,7 +1073,7 @@ const Header = () => {
                       <div className="animation-section">
                         <div className="lottie-container">
                           <DotLottieReact
-                            src="https://lottie.host/2d061517-f94a-4bf9-a47a-c24cf57cf91b/FOO2rizWtB.lottie"
+                            src="https://lottie.host/15a22715-3364-4260-a509-5800e64d9ae1/G1CsOX3N5K.lottie"
                             loop
                             autoplay
                           />
