@@ -67,17 +67,7 @@ const OpcAndProprietorship = () => {
         />
       </div>
 
-      <QuickLinksNav className={isQuickLinksVisible ? "visible" : ""}>
-        <div className="ql-container">
-          <a onClick={() => scrollToRef(overviewRef)}>Overview</a>
-          <a onClick={() => scrollToRef(featuresRef)}>Features</a>
-          <a onClick={() => scrollToRef(comparisonRef)}>Comparison</a>
-          <a onClick={() => scrollToRef(procedureRef)}>Procedure</a>
-          <a onClick={() => scrollToRef(documentsRef)}>Documents</a>
-          <a onClick={() => scrollToRef(faqRef)}>FAQ</a>
-          <a onClick={scrollToTop}>Top</a>
-        </div>
-      </QuickLinksNav>
+      
 
       <OpcSection ref={overviewRef}>
         <OpcContainer>

@@ -60,7 +60,14 @@ const HeroSection = styled.section`
 
   @media screen and (max-width: 480px) {
     min-height: 40vh;
-    padding: 64px 12px 28px;
+    /* reduce top padding to better match the fixed header height on small phones */
+    padding: 52px 12px 28px;
+  }
+  /* Extra small phones */
+  @media screen and (max-width: 360px) {
+    min-height: 36vh;
+    /* extra small phones: tighten top padding slightly to align with ultra-small header */
+    padding: 48px 10px 20px;
   }
 `;
 
@@ -112,9 +119,11 @@ const HeroContainer = styled.div`
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1200px;
+  /* match Header's max-width so hero aligns with header content */
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  /* match Header/MainContent horizontal padding: 1rem (16px) default */
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,7 +131,11 @@ const HeroContainer = styled.div`
 
   @media screen and (max-width: 480px) {
     max-width: 100%;
-    padding: 0 12px;
+    /* Header uses 0.5rem padding on very small screens; match that */
+    padding: 0 0.5rem;
+  }
+  @media screen and (max-width: 360px) {
+    padding: 0 0.25rem;
   }
 `;
 
@@ -141,6 +154,11 @@ const HeroBreadcrumb = styled.nav`
   margin-bottom: 32px;
   font-size: 15px;
   line-height: 1.5;
+  @media screen and (max-width: 480px) {
+    margin-bottom: 18px;
+    font-size: 13px;
+    gap: 6px;
+  }
 `;
 
 const BreadcrumbLink = styled(Link)`
@@ -192,6 +210,14 @@ const HeroTitle = styled.h1`
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   animation: ${fadeInUp} 0.8s ease-out;
   font-family: 'Playfair Display', serif;
+  @media screen and (max-width: 480px) {
+    font-size: clamp(1.5rem, 6.5vw, 2.1rem);
+    margin-bottom: 14px;
+    line-height: 1.15;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 1.6rem;
+  }
 `;
 
 const HeroSubtitle = styled.p`
@@ -207,6 +233,11 @@ const HeroSubtitle = styled.p`
     margin-bottom: 18px;
     font-size: 0.98rem;
   }
+  @media screen and (max-width: 360px) {
+    max-width: 100%;
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+  }
 `;
 
 const HeroCtaGroup = styled.div`
@@ -216,6 +247,13 @@ const HeroCtaGroup = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   animation: ${fadeInUp} 0.8s ease-out 0.4s both;
+  @media screen and (max-width: 480px) {
+    gap: 10px;
+  }
+  @media screen and (max-width: 360px) {
+    flex-direction: column;
+    gap: 8px;
+  }
 `;
 
 const CtaButton = styled(Link)`
@@ -260,6 +298,17 @@ const CtaButton = styled(Link)`
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
     }
+  }
+  /* Button scaling for small phones */
+  @media screen and (max-width: 480px) {
+    padding: 12px 22px;
+    font-size: 14px;
+  }
+  @media screen and (max-width: 360px) {
+    padding: 10px 20px;
+    font-size: 13px;
+    width: 100%;
+    justify-content: center;
   }
 `;
 

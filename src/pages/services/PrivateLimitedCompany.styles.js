@@ -1,319 +1,227 @@
-
 import styled from 'styled-components';
 
 export const PLCSection = styled.section`
-  padding: 60px 24px;
-  background: linear-gradient(180deg, #f8f9fb 0, #fff 50%);
-  font-family: 'Inter', sans-serif;
-  color: #2d3748;
-
-  h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-  }
+  background: linear-gradient(180deg, rgba(244,233,193,0.25) 0%, rgba(255,255,255,0) 100%);
+  padding: 4rem 0 6rem;
 `;
 
 export const PLCContainer = styled.div`
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
   display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 40px;
+  grid-template-columns: 1fr 360px;
+  gap: 48px;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    padding: 0 16px;
+    padding: 0 1rem;
+    gap: 28px;
   }
 `;
 
-export const PLCMain = styled.article`
-  background: #fff;
-  padding: 48px;
-  border-radius: 20px;
-  box-shadow: 0 16px 48px rgba(28, 41, 81, 0.12);
-  border: 1px solid rgba(28, 41, 81, 0.06);
-  width: 100%;
-  box-sizing: border-box;
-
-  h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    background: linear-gradient(135deg, #1C2951, #D4AF37);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  @media (max-width: 900px) {
-    padding: 32px;
-  }
-  @media (max-width: 480px) {
-    padding: 20px;
-  }
+export const PLCMain = styled.main`
+  background: white;
+  border-radius: 16px;
+  padding: 36px;
+  box-shadow: 0 12px 30px rgba(28,41,81,0.06);
 `;
 
 export const PLCByline = styled.p`
-  color: #718096;
+  color: #64748b;
   margin-bottom: 18px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
+  line-height: 1.65;
 `;
 
 export const SectionLottie = styled.div`
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  margin: 30px auto;
   display: flex;
-  align-items: center;
   justify-content: center;
-  & > * { width: 100%; height: auto; max-height: 360px; }
-  @media (max-width: 480px) {
-    max-width: 100%;
-    margin: 18px auto;
-  }
+  align-items: center;
+  margin: 18px 0 32px;
 `;
 
 export const FeatureGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  margin: 28px 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin: 18px 0 28px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const FeatureCard = styled.div`
-  background: #fff;
-  padding: 22px;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(28, 41, 81, 0.08);
-  border: 1px solid rgba(28, 41, 0.04);
-  text-align: left;
+  background: linear-gradient(180deg, #fff 0%, #fbfaf7 100%);
+  border: 1px solid rgba(28,41,81,0.06);
+  padding: 18px;
+  border-radius: 12px;
 `;
 
 export const IconBox = styled.div`
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #1C2951, #D4AF37);
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--light-gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 20px;
-  margin-bottom: 12px;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-right: 12px;
 `;
 
-export const ComparisonTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  box-shadow: 0 8px 24px rgba(28, 41, 81, 0.06);
-  border-radius: 12px;
-  overflow: hidden;
-
-  th {
-    background: linear-gradient(90deg, #1C2951, #D4AF37);
-    color: #fff;
-    padding: 12px;
-    text-align: left;
-  }
-
-  td {
-    padding: 12px;
-    border-bottom: 1px solid rgba(28, 41, 81, 0.06);
-    background: #fff;
-  }
+export const ComparisonTable = styled.div`
+  overflow-x: auto;
+  margin: 18px 0 28px;
 `;
 
-export const ProcessTimeline = styled.div`
-  position: relative;
-  padding-left: 40px;
-  margin: 30px 0;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 20px;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, #1C2951, #D4AF37);
-    border-radius: 2px;
-  }
-  @media (max-width: 900px) {
-    padding-left: 16px;
-    &::before { left: 8px; }
-  }
+export const ProcessTimeline = styled.ol`
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 `;
 
-export const TimelineItem = styled.div`
-  position: relative;
-  margin-bottom: 26px;
-  padding-left: 36px;
-  @media (max-width: 900px) {
-    padding-left: 24px;
-    margin-bottom: 20px;
-  }
+export const TimelineItem = styled.li`
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
 `;
 
-export const TimelineMarker = styled.div`
-  position: absolute;
-  left: -44px;
-  top: 0;
+export const TimelineMarker = styled.span`
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #1C2951, #D4AF37);
-  display: flex;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  @media (max-width: 900px) {
-    left: 0;
-    transform: translateX(-50%);
-    top: 4px;
-  }
+  font-weight: 700;
 `;
 
 export const PLCSidebar = styled.aside`
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
+  position: sticky;
+  top: 110px;
+  align-self: start;
+
   @media (max-width: 900px) {
-    margin-top: 20px;
+    position: relative;
+    top: auto;
   }
 `;
 
 export const SidebarScrollWrapper = styled.div`
-  max-height: calc(100vh - 40px);
-  overflow-y: auto;
-  @media (max-width: 900px) {
-    max-height: none;
-    overflow: visible;
+  .sidebar-card {
+    width: 100%;
   }
 `;
 
 export const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin: 20px 0;
+  margin: 18px 0 28px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const StatCard = styled.div`
-  padding: 16px;
+  background: var(--primary-color);
+  color: white;
+  padding: 12px;
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(28, 41, 81, 0.05), rgba(212, 175, 55, 0.06));
   text-align: center;
 `;
 
 export const BackToTop = styled.button`
   position: fixed;
-  right: 30px;
-  bottom: 28px;
-  background: linear-gradient(135deg, #1C2951, #D4AF37);
-  color: #fff;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--gradient-secondary);
+  color: var(--primary-color);
   border: none;
-  width: 48px;
-  height: 48px;
   border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(230, 197, 127, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 36px rgba(28, 41, 81, 0.12);
   opacity: 0;
-  transform: translateY(80px);
-  transition: all 0.3s;
-  z-index: 100;
+  visibility: hidden;
+  transform: translateY(20px);
 
   &.visible {
     opacity: 1;
+    visibility: visible;
     transform: translateY(0);
   }
+
+  i { font-size: 1rem; }
 `;
 
-export const QuickLinksBar = styled.nav`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 72px;
-  z-index: 60;
-  background: rgba(28, 41, 81, 0.98);
-  color: #fff;
+export const QuickLinksBar = styled.div`
   display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 3px solid #D4AF37;
+  gap: 8px;
+  flex-wrap: nowrap;
+  margin: 12px 0 18px;
+  position: sticky;
+  top: 100px;
+  z-index: 1200;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(28,41,81,0.06);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
   a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.03);
-    font-weight: 600;
     white-space: nowrap;
-
-    &:focus,
-    &:hover {
-      background: rgba(212, 175, 55, 0.14);
-      color: #D4AF37;
-    }
   }
 
-  /* Small-screen tweaks: keep bar scrollable but compact the items */
-  @media (max-width: 768px) {
-    gap: 8px;
-    padding: 8px 10px;
-
-    a {
-      display: inline-block;
-      padding: 8px 10px;
-      font-size: 0.95rem;
-    }
-  }
-
-  @media (max-width: 640px) {
-    top: 60px;
-    padding: 8px 10px;
+  @media (max-width: 900px) {
+    top: 80px;
   }
 `;
 
-/* No top-level global media rules here — global overflow is controlled in GlobalStyles */
-
-export const LottieAccent = styled.span`
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 10px;
-  width: 40px;
-  height: 40px;
+export const LottieAccent = styled.div`
+  max-width: 360px;
+  margin: 0 auto 18px;
 `;
 
 export const AnchorTarget = styled.div`
-  scroll-margin-top: 120px;
+  margin-top: -110px;
+  padding-top: 110px;
 `;
 
 export const HighlightBox = styled.div`
-    background: #f8f9fb;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 20px 0;
-    border: 1px solid rgba(28,41,81,0.06);
+  background: var(--light-gold);
+  border-left: 4px solid var(--secondary-color);
+  padding: 16px;
+  border-radius: 8px;
+  margin: 12px 0 18px;
+`;
+
+export const TableScroll = styled.div`
+  overflow-x: auto;
 `;
 
 export const Callout = styled.div`
-    background: linear-gradient(135deg, #1C2951, #D4AF37);
-    color: #fff;
-    border: none;
-    margin-top: 24px;
-    padding: 20px;
-    border-radius: 12px;
-
-    h3 {
-        margin: 0;
-    }
-
-    p {
-        margin: 8px 0 0;
-    }
+  background: linear-gradient(90deg, rgba(212,175,55,0.08), rgba(28,41,81,0.03));
+  border: 1px dashed rgba(28,41,81,0.06);
+  padding: 16px;
+  border-radius: 12px;
+  margin: 18px 0 24px;
 `;
+
+export default {};
