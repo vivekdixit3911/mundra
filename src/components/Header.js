@@ -953,6 +953,20 @@ const Header = () => {
           url: '/services/notarization'
         }
       ]
+    },
+    'web-development': {
+      title: 'Web Development',
+      icon: 'fas fa-laptop-code',
+      services: [
+        {
+          name: 'Website Development',
+          url: '/services/website-development'
+        },
+        {
+          name: 'Ecommerce Development',
+          url: '/services/ecommerce-development'
+        }
+      ]
     }
   };
 

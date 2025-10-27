@@ -59,6 +59,8 @@ import LoanProjectReports from "./pages/services/LoanProjectReports";
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 import ChattyAssistant from './components/PiriyaAssistant';
 import ShiftingRegisteredOffice from "./pages/services/ShiftingRegisteredOffice";
+import WebsiteDevelopment from "./pages/services/WebsiteDevelopment";
+import EcommerceDevelopment from "./pages/services/EcommerceDevelopment";
 
 // Main App Container
 const AppContainer = styled.div`
@@ -1571,6 +1573,8 @@ function App() {
         <Route path="/services/loan-project-reports" element={<LoanProjectReports />} />
         <Route path="/services/shifting-registered-office" element={<ShiftingRegisteredOffice />} />
         <Route path="/services/shift-registered-office" element={<ShiftingRegisteredOffice />} />
+        <Route path="/services/website-development" element={<WebsiteDevelopment />} />
+        <Route path="/services/ecommerce-development" element={<EcommerceDevelopment />} />
         <Route path="/testimonials" element={<HomePage />} />
       </Routes>
     </Router>
