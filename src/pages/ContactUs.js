@@ -1,7 +1,16 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+// Floating animation for decorative elements in the hero
+const float = keyframes`
+  0% { transform: translateY(0) translateX(0) rotate(0deg); }
+  25% { transform: translateY(-12px) translateX(4px) rotate(-2deg); }
+  50% { transform: translateY(0) translateX(0) rotate(0deg); }
+  75% { transform: translateY(-8px) translateX(-4px) rotate(2deg); }
+  100% { transform: translateY(0) translateX(0) rotate(0deg); }
+`;
 
 // Styled Components for ContactUs
 const ContactHero = styled.section`
@@ -38,7 +47,7 @@ const FloatingElement = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: float 6s ease-in-out infinite;
+  animation: ${float} 6s ease-in-out infinite;
   animation-delay: ${props => props.delay || '0s'};
 
   i {
@@ -121,8 +130,8 @@ const HeroDescription = styled.p`
 const HeroButtons = styled.div`
   display: flex;
   gap: 1.5rem;
-  justifyContent: center;
-  flexWrap: wrap;
+  justify-content: center;
+  flex-wrap: wrap;
 
   @media (max-width: 768px) {
     flex-direction: column;

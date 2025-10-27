@@ -1007,7 +1007,7 @@ function App() {
             >
               <ServiceImage>
                 <img
-                  src="https://images.unsplash.com/photo-1560184897-6c5f1c2b6f3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60"
+                  src="https://images.pexels.com/photos/4246100/pexels-photo-4246100.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Registered Office Shift"
                 />
               </ServiceImage>
