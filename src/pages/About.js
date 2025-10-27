@@ -1331,7 +1331,7 @@ const About = () => {
                 </div>
               </div>
               <div className="member-info">
-                <h3>Adv. Rajesh Mundra</h3>
+                <h3>Adv. Deepak Dahiya </h3>
                 <p className="member-role">Senior Partner & Founder</p>
                 <p className="member-description">
                   With over 15 years of experience in corporate law and
@@ -1352,7 +1352,7 @@ const About = () => {
                 </div>
               </div>
               <div className="member-info">
-                <h3>Adv. Priya Sharma</h3>
+                <h3>Adv. Madhav Sharma</h3>
                 <p className="member-role">Senior Associate</p>
                 <p className="member-description">
                   Specializing in family law and criminal defense, Priya brings
@@ -1373,8 +1373,8 @@ const About = () => {
                 </div>
               </div>
               <div className="member-info">
-                <h3>Adv. Amit Kumar</h3>
-                <p className="member-role">Legal Consultant</p>
+                <h3>Nikhli Malhotra</h3>
+                <p className="member-role">Business License Expert</p>
                 <p className="member-description">
                   Expert in intellectual property and taxation law, Amit
                   provides strategic counsel for complex legal matters.
