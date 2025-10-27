@@ -34,7 +34,7 @@ const clickPing = keyframes`
  100% { transform: scale(1); box-shadow: 0 4px 20px rgba(212,175,55,0.25); }
 `;
 
-const PiriyaButton = styled.button`
+const ChattyButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,7 +166,7 @@ const Tooltip = styled.div`
     border-left-color: #1C2951;
   }
 
-  ${PiriyaButton}:hover & {
+  ${ChattyButton}:hover & {
     opacity: 1;
     visibility: visible;
   }
@@ -211,7 +211,7 @@ const ModalHeader = styled.div`
   margin-bottom: 25px;
 `;
 
-const PiriyaAvatar = styled.div`
+const ChattyAvatar = styled.div`
   width: 80px;
   height: 80px;
   background: linear-gradient(135deg, #D4AF37, #B8941F);
@@ -254,7 +254,7 @@ const OnlineIndicator = styled.div`
   }
 `;
 
-const PiriyaName = styled.h3`
+const ChattyName = styled.h3`
   color: #1C2951;
   font-size: 24px;
   font-weight: 700;
@@ -382,7 +382,7 @@ const AssistantWrapper = styled.div`
   }
 `;
 
-const PiriyaAssistant = () => {
+const ChattyAssistant = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pinging, setPinging] = useState(false);
   const [assistantStep, setAssistantStep] = useState(0); // 0: greeting, 1: name, 2: email+phone, 3: preference, 4: final
@@ -395,7 +395,7 @@ const PiriyaAssistant = () => {
   useEffect(() => {
     // auto-popup once per session after the user scrolls for a short time
     try {
-      const seen = sessionStorage.getItem('piriyaSeen');
+  const seen = sessionStorage.getItem('chattySeen');
       if (!seen) {
         let timer = null;
         const onScroll = () => {
@@ -404,7 +404,7 @@ const PiriyaAssistant = () => {
           timer = setTimeout(() => {
             setIsModalOpen(true);
             setAssistantStep(0); // greeting
-            sessionStorage.setItem('piriyaSeen', 'true');
+            sessionStorage.setItem('chattySeen', 'true');
           }, 3000); // open 3s after user scrolls
           // remove listener — we only want this once
           window.removeEventListener('scroll', onScroll);
@@ -469,7 +469,7 @@ const PiriyaAssistant = () => {
 
     if (assistantStep === 3) {
       // send or queue the request here (backend integration point)
-      console.log('Piriya contact request', formData);
+  console.log('Chatty contact request', formData);
       setAssistantStep(4);
       setTimeout(() => {
         // close after brief pause
@@ -489,15 +489,15 @@ const PiriyaAssistant = () => {
   return (
     <>
       <AssistantWrapper>
-        <PiriyaButton 
+        <ChattyButton 
           onClick={openAndStart}
-          aria-label="Open Piriya AI Assistant"
+          aria-label="Open Chatty Assistant"
           $pinging={pinging}
         >
           <i className="fas fa-robot"></i>
           <OnlineStatus />
-          <Tooltip>Chat with Piriya AI Assistant</Tooltip>
-        </PiriyaButton>
+          <Tooltip>Chat with Chatty</Tooltip>
+        </ChattyButton>
       </AssistantWrapper>
 
       <ModalOverlay $isOpen={isModalOpen} onClick={handleCloseModal}>
@@ -507,11 +507,11 @@ const PiriyaAssistant = () => {
           </CloseButton>
 
           <ModalHeader>
-            <PiriyaAvatar>
+            <ChattyAvatar>
               <i className="fas fa-robot"></i>
               <OnlineIndicator />
-            </PiriyaAvatar>
-            <PiriyaName>Piriya</PiriyaName>
+            </ChattyAvatar>
+            <ChattyName>Chatty</ChattyName>
             <OnlineText>
               <i className="fas fa-circle"></i>
               Currently Online
@@ -600,4 +600,4 @@ const PiriyaAssistant = () => {
   );
 };
 
-export default PiriyaAssistant;
+export default ChattyAssistant;

@@ -57,7 +57,7 @@ import LitigationServices from "./pages/services/LitigationServices";
 import Notarization from "./pages/services/Notarization";
 import LoanProjectReports from "./pages/services/LoanProjectReports";
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
-import PiriyaAssistant from './components/PiriyaAssistant';
+import ChattyAssistant from './components/PiriyaAssistant';
 import ShiftingRegisteredOffice from "./pages/services/ShiftingRegisteredOffice";
 
 // Main App Container
@@ -1453,8 +1453,8 @@ function App() {
   return (
     <Router>
   <GlobalStyles />
-  {/* Render Piriya AI assistant globally above the WhatsApp CTA */}
-  <PiriyaAssistant />
+  {/* Render Chatty assistant globally above the WhatsApp CTA */}
+  <ChattyAssistant />
   <WhatsAppFloatingButton />
       <Routes>
         <Route path="/" element={<HomePage />} />

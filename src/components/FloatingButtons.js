@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import WhatsAppButtonComponent from './WhatsAppButton';
-import PiriyaAssistant from './PiriyaAssistant';
+import ChattyAssistant from './PiriyaAssistant';
 
 const FloatingButtonsContainer = styled.div`
   position: fixed;
@@ -23,8 +23,8 @@ const FloatingButtonsContainer = styled.div`
 const FloatingButtons = () => {
   return (
     <FloatingButtonsContainer>
-      <WhatsAppButtonComponent />
-      <PiriyaAssistant />
+  <WhatsAppButtonComponent />
+  <ChattyAssistant />
     </FloatingButtonsContainer>
   );
 };
