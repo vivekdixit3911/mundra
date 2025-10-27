@@ -6,9 +6,9 @@ const Wrapper = styled.div`
   right: 20px;
   bottom: 20px;
   z-index: 3000;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  /* keep wrapper small so it doesn't cover other clickable elements */
+  width: auto;
+  height: auto;
   pointer-events: auto;
 
   @media (max-width: 480px) {
@@ -46,6 +46,9 @@ const FloatingButton = styled.a`
 `;
 
 const PhoneBubble = styled.div`
+  position: absolute;
+  right: 80px; /* sit to the left of the button */
+  bottom: 0;
   background: rgba(0,0,0,0.75);
   color: white;
   padding: 8px 12px;
@@ -54,16 +57,11 @@ const PhoneBubble = styled.div`
   font-size: 0.95rem;
   white-space: nowrap;
   transform-origin: right center;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.18s ease, transform 0.18s ease;
   opacity: 0;
   pointer-events: none;
 
-  /* position relative to the wrapper so it stays attached to the button */
-  @media (min-width: 0px) {
-    display: block;
-  }
-
-  /* show bubble on hover (desktop) */
+  /* keep it visually available on larger screens */
   ${Wrapper}:hover & {
     opacity: 1;
     pointer-events: auto;
@@ -81,10 +79,13 @@ const WhatsAppFloatingButton = ({ number = '918506874280', label = 'Chat with us
 
   return (
     <Wrapper>
-      <PhoneBubble>{label}</PhoneBubble>
-      <FloatingButton href={href} target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp">
-        <i className="fab fa-whatsapp" aria-hidden="true"></i>
-      </FloatingButton>
+      {/* position relative container so bubble can be absolute without expanding hit area */}
+      <div style={{ position: 'relative', display: 'inline-block' }}>
+        <PhoneBubble>{label}</PhoneBubble>
+        <FloatingButton href={href} target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp">
+          <i className="fab fa-whatsapp" aria-hidden="true"></i>
+        </FloatingButton>
+      </div>
     </Wrapper>
   );
 };

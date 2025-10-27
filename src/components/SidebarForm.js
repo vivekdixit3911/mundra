@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SidebarCard = styled.div`
@@ -68,6 +68,20 @@ const SubmitButton = styled.button`
   }
 `;
 
+const StatusMessage = styled.p`
+  font-size: 0.95rem;
+  margin-top: 14px;
+  text-align: center;
+`;
+
+const SuccessMessage = styled(StatusMessage)`
+  color: #065f46; /* green-700 */
+`;
+
+const ErrorMessage = styled(StatusMessage)`
+  color: #b91c1c; /* red-700 */
+`;
+
 const OrDivider = styled.div`
   text-align: center;
   margin: 20px 0;
@@ -123,10 +137,56 @@ const ContactLink = styled.p`
 
 
 const SidebarForm = () => {
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Thank you for your request. We will get in touch with you shortly.');
-    e.target.reset();
+    setSuccess('');
+    setError('');
+    const form = e.target;
+    const formData = new FormData(form);
+    const name = formData.get('name') || '';
+    const email = formData.get('email') || '';
+    const phone = formData.get('phone') || '';
+
+    // minimal validation
+    if (!name || !email || !phone) {
+      setError('Please fill all required fields.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const payload = {
+        name,
+        email,
+        mobile: phone, // backend expects mobile/mobile or phone
+        phone, // include phone too
+        pageUrl: (typeof window !== 'undefined' && window.location && window.location.href) ? window.location.href : '',
+      };
+
+      const resp = await fetch('https://backend-one-puce-53.vercel.app/api/send-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!resp.ok) {
+        const text = await resp.text().catch(() => null);
+        throw new Error(text || `Server responded with ${resp.status}`);
+      }
+
+      const data = await resp.json().catch(() => ({}));
+      setSuccess(data && data.message ? String(data.message) : 'Thank you! Your request was submitted.');
+      form.reset();
+    } catch (err) {
+      console.error('[SidebarForm] submit error:', err);
+      setError('Failed to submit. Please try again or call us at +91 85068 74280.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
