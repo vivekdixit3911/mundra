@@ -749,8 +749,7 @@ const Header = () => {
         { name: 'Company Formation', url: '/services/company-formation' },
         { name: 'Private Limited Company', alias: 'Private Limited', url: '/services/private-limited-company' },
         { name: 'Public Limited Company', alias: 'Public Limited', url: '/services/public-limited-company' },
-        { name: 'OPC & Proprietorship', url: '/services/opc-proprietorship' },
-        { name: 'One Person Company', url: '/services/opc-proprietorship' },
+  { name: 'OPC & Proprietorship', alias: 'OPC', url: '/services/opc-proprietorship' },
         { name: 'NBFC Registration', alias: 'NBFC', url: '/services/nbfc-registration' },
         { name: 'Society & Trust', url: '/services/society-trust' },
         { name: 'Loan & Project Reports', url: '/services/loan-project-reports' }
@@ -797,6 +796,7 @@ const Header = () => {
         { name: 'WPC VNO', url: '/services/wpc-vno' },
         { name: 'BPO License', url: '/services/bpo-license' },
         { name: 'APEDA Registration', url: '/services/apeda-registration' }
+        ,{ name: 'Import Medical Devices (MD-14 & MD-15)', alias: 'MD-14/MD-15', url: '/services/import-medical-devices' }
       ]
     },
 
@@ -809,6 +809,7 @@ const Header = () => {
         { name: 'Civil & Criminal', url: '/services/civil-criminal' },
         { name: 'Consumer Complaint', url: '/services/consumer-complaint' },
         { name: 'Criminal Cases', url: '/services/criminal-cases' },
+        { name: 'Court Marriage', url: '/services/court-marriage' },
         { name: 'Litigation Services', url: '/services/litigation' },
         { name: 'Document Attestation', url: '/services/document-attestation' },
         { name: 'Notarization', url: '/services/notarization' },
@@ -822,7 +823,6 @@ const Header = () => {
       services: [
         { name: 'Property Registry', url: '/services/property-registry' },
         { name: 'Lease Deed', url: '/services/lease-deed' },
-        { name: 'Court Marriage', url: '/services/court-marriage' },
         { name: 'Stamp Paper & Notary', url: '/services/stamp-paper-notary' }
       ]
     },
@@ -831,7 +831,8 @@ const Header = () => {
       title: 'Web Development',
       icon: 'fas fa-laptop-code',
       services: [
-        { name: 'Web Development', url: '/services/web-development' }
+        { name: 'Website Development', url: '/services/web-development' },
+        { name: 'Ecommerce Development', alias: 'Ecommerce', url: '/services/ecommerce-development' }
       ]
     }
   };
@@ -864,7 +865,7 @@ const Header = () => {
       <HeaderContainer className={isScrolled ? 'scrolled' : ''}>
         <HeaderTop>
           <TopContent>
-            <TopLeft>
+            <TopLeft>s
               <span>
                 <i className="fas fa-map-marker-alt"></i>
                 Best Sky Tower, 1307, Netaji Subhash Place, Pitampura, Delhi

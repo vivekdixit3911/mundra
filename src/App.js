@@ -46,6 +46,7 @@ import PsaraLicense from "./pages/services/PsaraLicense";
 import WpcVno from "./pages/services/WpcVno";
 import BpoLicense from "./pages/services/BpoLicense";
 import ApedaRegistration from "./pages/services/ApedaRegistration";
+import ImportMedicalDevices from "./pages/services/ImportMedicalDevices";
 import BailMatters from "./pages/services/BailMatters";
 import CyberFraud from "./pages/services/CyberFraud";
 import CivilAndCriminal from "./pages/services/CivilAndCriminal";
@@ -1547,6 +1548,19 @@ function App() {
         <Route
           path="/services/apeda-registration"
           element={<ApedaRegistration />}
+        />
+        {/* Import license for medical devices (MD-14 & MD-15) */}
+        <Route
+          path="/services/import-medical-devices"
+          element={<ImportMedicalDevices />}
+        />
+        <Route
+          path="/services/permission-to-import-medical-devices"
+          element={<ImportMedicalDevices />}
+        />
+        <Route
+          path="/services/form-md-14-md-15"
+          element={<ImportMedicalDevices />}
         />
         <Route path="/services/bail-matters" element={<BailMatters />} />
         {/* cyber-fraud alias */}
