@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -344,7 +343,7 @@ const MegaMenuLeft = styled.div`
 const MegaMenuRight = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr;
   gap: 2rem;
 
   .content-section {
@@ -389,17 +388,7 @@ const MegaMenuRight = styled.div`
     }
   }
 
-  .animation-section {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 1rem;
-    
-    .lottie-container {
-      width: 100%;
-      height: 250px;
-    }
-  }
+  /* Animation section removed to optimize mega menu for desktop performance */
 `;
 
 const HeaderActions = styled.div`
@@ -752,220 +741,97 @@ const Header = () => {
   const handleCategoryClick = (categoryKey) => {
     setSelectedCategory(categoryKey);
   };
-
   const servicesData = {
     'company-registration': {
       title: 'Company Registration',
       icon: 'fas fa-building',
       services: [
-        {
-          name: 'Private Limited Company',
-          url: '/services/private-limited-company'
-        },
-        {
-          name: 'Public Limited Company',
-          url: '/services/public-limited-company'
-        },
-        {
-          name: 'One Person Company',
-          url: '/services/opc-proprietorship'
-        },
-        {
-          name: 'OPC & Proprietorship',
-          url: '/services/opc-proprietorship'
-        },
-        {
-          name: 'NBFC Registration',
-          url: '/services/nbfc-registration'
-        },
-        {
-          name: 'Society & Trust',
-          url: '/services/society-trust'
-        },
-        {
-          name: 'Company Formation',
-          url: '/services/company-formation'
-        },
-        {
-          name: 'Loan Project Reports',
-          url: '/services/loan-project-reports'
-        }
+        { name: 'Company Formation', url: '/services/company-formation' },
+        { name: 'Private Limited Company', alias: 'Private Limited', url: '/services/private-limited-company' },
+        { name: 'Public Limited Company', alias: 'Public Limited', url: '/services/public-limited-company' },
+        { name: 'OPC & Proprietorship', url: '/services/opc-proprietorship' },
+        { name: 'One Person Company', url: '/services/opc-proprietorship' },
+        { name: 'NBFC Registration', alias: 'NBFC', url: '/services/nbfc-registration' },
+        { name: 'Society & Trust', url: '/services/society-trust' },
+        { name: 'Loan & Project Reports', url: '/services/loan-project-reports' }
       ]
     },
-    'tax-compliance': {
-      title: 'Secretarial services',
+
+    'secretarial-services': {
+      title: 'Secretarial Services',
       icon: 'fas fa-calculator',
       services: [
-        {
-          name: 'GST Registration & Returns',
-          url: '/services/gst-returns'
-        },
-        {
-          name: 'Income Tax Filing',
-          url: '/services/itr-filing'
-        },
-        {
-          name: 'Annual Filing & ROC',
-          url: '/services/annual-filing-roc'
-        },
-        {
-          name: 'Bookkeeping & Audit',
-          url: '/services/bookkeeping-audit'
-        },
-        {
-          name: 'Legal Metrology',
-          url: '/services/legal-metrology'
-        }
+        { name: 'Annual Filing', alias: 'Annual Filing (ROC)', url: '/services/annual-filing' },
+        { name: 'Bookkeeping & Audit', url: '/services/bookkeeping-audit' },
+        { name: 'Loan & Project Reports', url: '/services/loan-project-reports' },
+        { name: 'Shifting Registered Office', alias: 'Shift Registered Office', url: '/services/shifting-registered-office' },
+        { name: 'GST Registration & Returns', alias: 'GST', url: '/services/gst-registration-returns' },
+        { name: 'Income Tax Filing', url: '/services/itr-filing' },
+        { name: 'Legal Metrology', alias: 'LMPC', url: '/services/legal-metrology' }
       ]
     },
+
     'intellectual-property': {
       title: 'Intellectual Property',
       icon: 'fas fa-trademark',
       services: [
-        {
-          name: 'Trademark Registration',
-          url: '/services/trademark-registration'
-        },
-        {
-          name: 'Copyright Registration',
-          url: '/services/copyright-registration'
-        },
-        {
-          name: 'Patent Filing',
-          url: '/services/patent-filing'
-        }
+        { name: 'Trademark Registration', alias: 'Trademark', url: '/services/trademark-registration' },
+        { name: 'Copyright Registration', url: '/services/copyright-registration' },
+        { name: 'Patent Filing', url: '/services/patent-filing' }
       ]
     },
-    'licenses': {
+
+    'licenses-registrations': {
       title: 'Licenses & Registrations',
       icon: 'fas fa-certificate',
       services: [
-        {
-          name: 'FSSAI License',
-          url: '/services/fssai-license'
-        },
-        {
-          name: 'Trade License',
-          url: '/services/trade-license'
-        },
-        {
-          name: 'Import Export Code',
-          url: '/services/import-export-code'
-        },
-        {
-          name: 'ISO Certification',
-          url: '/services/iso-certification'
-        },
-        {
-          name: 'PSARA License',
-          url: '/services/psara-license'
-        },
-        {
-          name: 'BPO License',
-          url: '/services/bpo-license'
-        },
-        {
-          name: 'EPR Certificate',
-          url: '/services/epr-certificate'
-        },
-        {
-          name: 'BIS Hallmark',
-          url: '/services/bis-hallmark'
-        },
-        {
-          name: 'APEDA Registration',
-          url: '/services/apeda-registration'
-        }
+        { name: 'GST Registration & Returns', alias: 'GST', url: '/services/gst-registration-returns' },
+        { name: 'FSSAI License', alias: 'FSSAI', url: '/services/fssai-license' },
+        { name: 'Trade License', url: '/services/trade-license' },
+        { name: 'Import Export Code (IEC)', url: '/services/import-export-code' },
+        { name: 'ISO Certification', alias: 'ISO', url: '/services/iso-certification' },
+        { name: 'Legal Metrology (LMPC)', url: '/services/legal-metrology' },
+        { name: 'EPR Certificate', url: '/services/epr-certificate' },
+        { name: 'BIS Hallmark', url: '/services/bis-hallmark' },
+        { name: 'PSARA License', alias: 'PSARA', url: '/services/psara-license' },
+        { name: 'WPC VNO', url: '/services/wpc-vno' },
+        { name: 'BPO License', url: '/services/bpo-license' },
+        { name: 'APEDA Registration', url: '/services/apeda-registration' }
       ]
     },
+
     'legal-services': {
       title: 'Legal Services',
       icon: 'fas fa-balance-scale',
       services: [
-        {
-          name: 'Civil & Criminal Cases',
-          url: '/services/civil-criminal'
-        },
-        {
-          name: 'Consumer Complaints',
-          url: '/services/consumer-complaint'
-        },
-        {
-          name: 'Cyber Fraud Cases',
-          url: '/services/cyber-fraud'
-        },
-        {
-          name: 'Bail Matters',
-          url: '/services/bail-matters'
-        },
-        {
-          name: 'Document Attestation',
-          url: '/services/document-attestation'
-        },
-        {
-          name: 'Litigation Services',
-          url: '/services/litigation'
-        },
-        {
-          name: 'Legal Notices',
-          url: '/services/legal-notices'
-        },
-        {
-          name: 'Court Marriage',
-          url: '/services/court-marriage'
-        }
+        { name: 'Bail Matters', url: '/services/bail-matters' },
+        { name: 'Cyber Fraud', alias: 'Call Centre Crime', url: '/services/cyber-fraud' },
+        { name: 'Civil & Criminal', url: '/services/civil-criminal' },
+        { name: 'Consumer Complaint', url: '/services/consumer-complaint' },
+        { name: 'Criminal Cases', url: '/services/criminal-cases' },
+        { name: 'Litigation Services', url: '/services/litigation' },
+        { name: 'Document Attestation', url: '/services/document-attestation' },
+        { name: 'Notarization', url: '/services/notarization' },
+        { name: 'Contract Drafting', url: '/services/contract-drafting' }
       ]
     },
+
     'property-services': {
       title: 'Property Services',
       icon: 'fas fa-home',
       services: [
-        {
-          name: 'Property Registry',
-          url: '/services/property-registry'
-        },
-        {
-          name: 'Lease Deed',
-          url: '/services/lease-deed'
-        },
-        {
-          name: 'Stamp Paper & Notary',
-          url: '/services/stamp-paper-notary'
-        },
-        {
-          name: 'Contract Drafting',
-          url: '/services/contract-drafting'
-        },
-        {
-          name: 'Franchise Agreement',
-          url: '/services/franchise-agreement'
-        },
-        {
-          name: 'Certified Copy',
-          url: '/services/certified-copy'
-        },
-        {
-          name: 'Relationship Certificate',
-          url: '/services/relationship-certificate'
-        },
-        {
-          name: 'Notarization',
-          url: '/services/notarization'
-        }
+        { name: 'Property Registry', url: '/services/property-registry' },
+        { name: 'Lease Deed', url: '/services/lease-deed' },
+        { name: 'Court Marriage', url: '/services/court-marriage' },
+        { name: 'Stamp Paper & Notary', url: '/services/stamp-paper-notary' }
       ]
     },
+
     'web-development': {
       title: 'Web Development',
       icon: 'fas fa-laptop-code',
       services: [
-        {
-          name: 'Website Development',
-          url: '/services/website-development'
-        },
-        {
-          name: 'Ecommerce Development',
-          url: '/services/ecommerce-development'
-        }
+        { name: 'Web Development', url: '/services/web-development' }
       ]
     }
   };
@@ -1066,33 +932,24 @@ const Header = () => {
                     </MegaMenuLeft>
                     <MegaMenuRight>
                       <div className="content-section">
-                        <div className="section-title">
-                          {selectedCategory ? servicesData[selectedCategory].title : 'Our Services'}
+                          <div className="section-title">
+                            {selectedCategory ? servicesData[selectedCategory].title : 'Our Services'}
+                          </div>
+                          <div className="services-grid">
+                            {selectedCategory && 
+                              servicesData[selectedCategory].services.map(service => (
+                                <Link
+                                  key={service.url}
+                                  to={service.url}
+                                  className="service-item"
+                                  onClick={() => handleDropdownToggle('services')}
+                                >
+                                  {service.alias ? `${service.name} (${service.alias})` : service.name}
+                                </Link>
+                              ))
+                            }
+                          </div>
                         </div>
-                        <div className="services-grid">
-                          {selectedCategory && 
-                            servicesData[selectedCategory].services.map(service => (
-                              <Link
-                                key={service.name}
-                                to={service.url}
-                                className="service-item"
-                                onClick={() => handleDropdownToggle('services')}
-                              >
-                                {service.name}
-                              </Link>
-                            ))
-                          }
-                        </div>
-                      </div>
-                      <div className="animation-section">
-                        <div className="lottie-container">
-                          <DotLottieReact
-                            src="https://lottie.host/15a22715-3364-4260-a509-5800e64d9ae1/G1CsOX3N5K.lottie"
-                            loop
-                            autoplay
-                          />
-                        </div>
-                      </div>
                     </MegaMenuRight>
                   </MegaMenuContent>
                 </MegaMenu>
@@ -1213,12 +1070,12 @@ const Header = () => {
                   <div className="category-services">
                     {category.services.map(service => (
                       <Link
-                        key={service.name}
+                        key={service.url}
                         to={service.url}
                         className="service-link"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {service.name}
+                        {service.alias ? `${service.name} (${service.alias})` : service.name}
                       </Link>
                     ))}
                   </div>
