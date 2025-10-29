@@ -865,7 +865,7 @@ const Header = () => {
       <HeaderContainer className={isScrolled ? 'scrolled' : ''}>
         <HeaderTop>
           <TopContent>
-            <TopLeft>s
+            <TopLeft>
               <span>
                 <i className="fas fa-map-marker-alt"></i>
                 Best Sky Tower, 1307, Netaji Subhash Place, Pitampura, Delhi
