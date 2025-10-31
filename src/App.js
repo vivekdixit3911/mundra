@@ -1171,16 +1171,14 @@ function App() {
                 <i className="fas fa-quote-left"></i>
               </div>
               <p className="testimonial-text">
-                "Legal Mundra provided exceptional service during my property
-                dispute case. Their professionalism and expertise ensured a
-                favorable outcome. Highly recommended!"
+                "Thankyou so much mundra firm , for doing my LMPC AAand EPR work in a day"
               </p>
               <div className="client-info">
                 <div className="client-avatar">
                   <i className="fas fa-user"></i>
                 </div>
                 <div className="client-details">
-                  <h5>Ramesh Patel</h5>
+                  <h5>akash chaudhary</h5>
                   <span>Business Owner</span>
                 </div>
               </div>
@@ -1191,17 +1189,15 @@ function App() {
                 <i className="fas fa-quote-left"></i>
               </div>
               <p className="testimonial-text">
-                "Outstanding legal representation in my corporate matter. The
-                team's attention to detail and strategic approach made all the
-                difference. Truly professional!"
+                "Outstanding legal representation in my corporate matter.  Best For import licenses and corporate services"
               </p>
               <div className="client-info">
                 <div className="client-avatar">
                   <i className="fas fa-user"></i>
                 </div>
                 <div className="client-details">
-                  <h5>Sneha Agarwal</h5>
-                  <span>CEO, Tech Solutions</span>
+                  <h5>Golu Gyan</h5>
+                  <span>Business Owner</span>
                 </div>
               </div>
             </TestimonialCard>

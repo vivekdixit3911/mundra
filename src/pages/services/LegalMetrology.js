@@ -27,12 +27,7 @@ const LegalMetrology = () => {
         >
           <div className="legal-container">
             <article className="legal-main">
-              <div className="lottie-container">
-                <LottieAnimation
-                  src="https://assets5.lottiefiles.com/packages/lf20_ndl8h3e1.json"
-                  className="lottie-float"
-                />
-              </div>
+              
 
               <h1 id="legal-metrology-heading">
                 Legal Metrology Registration in India
