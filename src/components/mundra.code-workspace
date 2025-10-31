@@ -9,6 +9,7 @@
 	],
 	"settings": {
 		"git.ignoreLimitWarning": true,
-		"liveServer.settings.multiRootWorkspaceName": "mundra"
+		"liveServer.settings.multiRootWorkspaceName": "mundra",
+		"liveServer.settings.port": 5501
 	}
 }

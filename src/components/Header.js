@@ -752,7 +752,7 @@ const Header = () => {
   { name: 'OPC & Proprietorship', alias: 'OPC', url: '/services/opc-proprietorship' },
         { name: 'NBFC Registration', alias: 'NBFC', url: '/services/nbfc-registration' },
         { name: 'Society & Trust', url: '/services/society-trust' },
-        { name: 'Loan & Project Reports', url: '/services/loan-project-reports' }
+        
       ]
     },
 
@@ -766,7 +766,7 @@ const Header = () => {
         { name: 'Shifting Registered Office', alias: 'Shift Registered Office', url: '/services/shifting-registered-office' },
         { name: 'GST Registration & Returns', alias: 'GST', url: '/services/gst-registration-returns' },
         { name: 'Income Tax Filing', url: '/services/itr-filing' },
-        { name: 'Legal Metrology', alias: 'LMPC', url: '/services/legal-metrology' }
+        
       ]
     },
 

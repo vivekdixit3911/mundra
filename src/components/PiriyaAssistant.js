@@ -511,7 +511,7 @@ const ChattyAssistant = () => {
               <i className="fas fa-robot"></i>
               <OnlineIndicator />
             </ChattyAvatar>
-            <ChattyName>Legal Bot</ChattyName>
+            <ChattyName>Madhav</ChattyName>
             <OnlineText>
               <i className="fas fa-circle"></i>
               Currently Online
